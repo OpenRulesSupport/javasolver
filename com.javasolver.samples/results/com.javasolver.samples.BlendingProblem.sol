@@ -1,0 +1,17 @@
+solution status: optimal solution found
+objective value:                              -323200
+Vi13                                              666 	(obj:0)
+Vi12                                              134 	(obj:0)
+Vi11                                              328 	(obj:0)
+Vi10                                             3464 	(obj:0)
+Vi9                                               868 	(obj:0)
+Vi8                                                 8 	(obj:0)
+Vi7                                              3464 	(obj:0)
+Vi6                                               868 	(obj:0)
+Vi5                                               664 	(obj:0)
+Vi4                                              1732 	(obj:0)
+Vi3                                              2604 	(obj:0)
+Vi2                                              2100 	(obj:0)
+Vi1                                                30 	(obj:0)
+Vi0                                                30 	(obj:0)
+Vi15                                           323200 	(obj:-1)
