@@ -2,7 +2,7 @@
 
 	
 	<target name="jar">
-		<jar file="./lib/com.javasolver.jar">
+		<jar file="./lib/javasolver/com.javasolver.jar">
 			<fileset dir="bin" />
 		</jar>
 	</target>

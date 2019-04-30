@@ -54,7 +54,7 @@ COLUMNS
     Vi14                               C3                  -1   C6                 -10   
     Vi15                               C3                  -1   
     M0001     'MARKER'                 'INTEND'
-    Vi15                               _OBJ_               -1   
+    Vi15                               _OBJ_                1   
 RHS
     rhs                                C2                 300   C4                3000   
     rhs                                C5                2000   C6                1000   

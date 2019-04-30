@@ -15,9 +15,9 @@ import javax.constraints.Solution;
 
 import javax.constraints.Var;
 
-import com.javasolver.Optimization;
+import com.javasolver.JavaSolver;
 
-public class SendMoreMoney extends Optimization {
+public class SendMoreMoney extends JavaSolver {
 	
 	// Problem Definition
 	public void define() {
@@ -38,12 +38,11 @@ public class SendMoreMoney extends Optimization {
 		// Define constraint SEND + MORE = MONEY 
 		int coef[] = { 1000, 100, 10, 1, 1000, 100, 10, 1, -10000, -1000, -100, -10, -1 };
 		Var[] sendmoremoney = new Var[] { S, E, N, D, M, O, R, E, M, O, N, E, Y};
-		//csp.post(coef, sendmoremoney, "=", 0);
 		Var scalProduct = csp.scalProd(coef,sendmoremoney);
 		csp.post(scalProduct, "=", 0);
 	}
 		
-	// Problem Resolution
+	// This method is called after the Optimization's method solve() finds a solution
 	public void saveSolution(Solution s) {	
 		s.log();
 		log("  "+s.getValue("S")+s.getValue("E")+s.getValue("N")+s.getValue("D"));

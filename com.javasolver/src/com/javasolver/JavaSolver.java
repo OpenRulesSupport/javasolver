@@ -3,7 +3,7 @@ package com.javasolver;
 import javax.constraints.*;
 import javax.constraints.impl.search.selectors.ValueSelectorMax;
 
-public abstract class Optimization {
+public abstract class JavaSolver {
 
 	protected Problem csp; // used by all subclasses
 	protected Var objectiveVar;
@@ -11,12 +11,12 @@ public abstract class Optimization {
 	protected int timeLimitInSec; 
 
 	/**
-	 * Creates an Optimization problem with 
+	 * Creates an instance of JavaSolver with 
 	 * an embedded JSR-331 constraint satisfaction problem "csp"
 	 */
-	public Optimization() {
+	public JavaSolver() {
 		csp = ProblemFactory.newProblem(getClass().getName());
-		log("=== Optimization problem: "+getClass().getName());
+		log("=== JavaSolver problem: "+getClass().getName());
 		objectiveVar = null;
 		maxNumberOfSolutions = 0;
 		timeLimitInSec = 0;
@@ -175,6 +175,8 @@ public abstract class Optimization {
 
 	/**
 	 * Problem specific method that save value from the solution to business objects
+	 * This method is called after the JavaSolver's method solve(), minimize() 
+	 * or maximize() finds a solution
 	 * @param solution
 	 */
 	public void saveSolution(Solution solution) {

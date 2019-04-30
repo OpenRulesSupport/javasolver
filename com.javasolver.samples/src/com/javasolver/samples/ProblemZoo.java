@@ -2,7 +2,7 @@ package com.javasolver.samples;
 
 import javax.constraints.Var;
 
-import com.javasolver.Optimization;
+import com.javasolver.JavaSolver;
 
 /*
     Problem "Zoo, Buses, and Kids"	
@@ -12,7 +12,7 @@ import com.javasolver.Optimization;
 
  */
 
-public class ProblemZoo extends Optimization {
+public class ProblemZoo extends JavaSolver {
 
 	public void define() {
 

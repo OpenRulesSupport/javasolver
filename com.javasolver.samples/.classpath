@@ -4,10 +4,10 @@
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="lib" path="/com.javasolver/lib/constrainer/constrainer.light.jar"/>
 	<classpathentry kind="lib" path="/com.javasolver/lib/constrainer/jsr331.constrainer.jar"/>
-	<classpathentry kind="lib" path="/com.javasolver/lib/com.javasolver.jar"/>
 	<classpathentry kind="lib" path="/com.javasolver/lib/logging/commons-logging-1.1.jar"/>
 	<classpathentry kind="lib" path="/com.javasolver/lib/logging/commons-logging-api-1.1.jar"/>
 	<classpathentry kind="lib" path="/com.javasolver/lib/logging/log4j-1.2.15.jar"/>
 	<classpathentry kind="lib" path="/com.javasolver/lib/jsr331/jsr331.jar"/>
+	<classpathentry kind="lib" path="/com.javasolver/lib/javasolver/com.javasolver.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
