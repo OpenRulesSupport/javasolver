@@ -1,9 +1,16 @@
 package com.javasolver;
 
-import javax.constraints.*;
-import javax.constraints.impl.search.selectors.ValueSelectorMax;
+import javax.constraints.Objective;
+import javax.constraints.Problem;
+import javax.constraints.ProblemFactory;
+import javax.constraints.SearchStrategy;
+import javax.constraints.Solution;
+import javax.constraints.Solver;
+import javax.constraints.ValueSelectorType;
+import javax.constraints.Var;
+import javax.constraints.VarSelectorType;
 
-public abstract class JavaSolver {
+public class JavaSolver {
 
 	protected Problem csp; // used by all subclasses
 	protected Var objectiveVar;
@@ -22,6 +29,10 @@ public abstract class JavaSolver {
 		timeLimitInSec = 0;
 	}
 	
+	/**
+	 * Logs (displays) the text to a log files defined using log4j.properties
+	 * @param text
+	 */
 	public void log(String text) {
 		csp.log(text);
 	}
@@ -29,8 +40,14 @@ public abstract class JavaSolver {
 	/**
 	 * Defines an optimization problem
 	 */
-	public abstract void define(); 
+	public void define() {
+		log("This method defines an optimization problem");
+	}
 	
+	/**
+	 * Sets an optimization objective used by methods minimize() or maximize()
+	 * @param objectiveVar
+	 */
 	public void setObjective(Var objectiveVar) {
 		this.objectiveVar = objectiveVar;
 	}
@@ -39,14 +56,6 @@ public abstract class JavaSolver {
 		return objectiveVar;
 	}
 	
-	public int getMaxNumberOfSolutions() {
-		return maxNumberOfSolutions;
-	}
-
-	public void setMaxNumberOfSolutions(int maxSolutions) {
-		this.maxNumberOfSolutions = maxSolutions;
-	}
-
 	/**
 	 * @return a JSR-331 constraint satisfaction problem
 	 */
@@ -55,40 +64,18 @@ public abstract class JavaSolver {
 	}
 
 	/**
-	 * Solves the optimization problem. If an objective is set, then it will try to find an optimal solution.
-	 * If an objective is not set (null), then it will try to find a feasible solution.
-	 * @param objectiveType: Objective.MINIMIZE or Objective.MAXIMIZE
-	 * @param timeLimitInSec
-	 * @return true is an optimal solution is found and false otherwise
+	 * Solves the constraint satisfaction problem. 
+	 * @return true is an solution is found and false otherwise
 	 */
-	public Solution solve(Objective objectiveType,int timeLimitInSec) {
-		return solve(objectiveType,timeLimitInSec,VarSelectorType.INPUT_ORDER,ValueSelectorType.MIN);
-	}
-	
-	public Solution solve(Objective objectiveType,int timeLimitInSec, VarSelectorType varSelector, ValueSelectorType valueSelector) { 
+	public Solution solve() { 
+		log("=== Find a Feasible Solution:");
 		Solver solver = csp.getSolver();
 		solver.traceSolutions(true);
 		if (timeLimitInSec > 0)
 			solver.setTimeLimit(timeLimitInSec*1000); 
 //		solver.traceExecution(true);
-		solver.traceSolutions(true);
 //		solver.addStrategyLogVariables(); 
-		SearchStrategy strategy = solver.getSearchStrategy();
-//		strategy.setVarSelectorType(VarSelectorType.INPUT_ORDER);
-		strategy.setVarSelectorType(varSelector);
-		strategy.setValueSelectorType(valueSelector);
-		solver.setSearchStrategy(csp.getVars(), new ValueSelectorMax());
-//		Solution solution = solver.findSolution(); 
-		Var objective = getObjective();
-		Solution solution = null;
-		if (objective != null) {
-			log("=== Find Optimal Solution:");
-			solution = solver.findOptimalSolution(objectiveType,objectiveVar);
-		}
-		else {
-			log("=== Find a Feasible Solution:");
-			solution = solver.findSolution();
-		}
+		Solution solution = solver.findSolution();
 		solver.logStats();
 		if (solution != null) {
 			saveSolution(solution);
@@ -98,20 +85,13 @@ public abstract class JavaSolver {
 		return solution;
 	}
 	
-	public Solution[] solveAll(Objective objectiveType,int timeLimitInSec) { 
+	public Solution[] solveAll() {  
 
-		log("=== SOLVE:");
+		log("=== Find All Solutions:");
 		Solver solver = csp.getSolver();
 		solver.traceSolutions(true);
 		if (timeLimitInSec > 0)
 			solver.setTimeLimit(timeLimitInSec*1000); 
-//		solver.traceExecution(true);
-		solver.traceSolutions(true);
-//		solver.addStrategyLogVariables(); 
-//		SearchStrategy strategy = solver.getSearchStrategy();
-//		strategy.setVarSelectorType(VarSelectorType.INPUT_ORDER);
-//		solver.setSearchStrategy(getVars(), new ValueSelectorMax());
-//		Solution solution = solver.findSolution();
 		if (maxNumberOfSolutions > 0)
 			solver.setMaxNumberOfSolutions(maxNumberOfSolutions);
 		Solution[]	solutions = solver.findAllSolutions();
@@ -119,24 +99,14 @@ public abstract class JavaSolver {
 		if (solutions == null || solutions.length == 0) {
 			log("No Solutions found");
 		}
+		else
+			saveSolutions(solutions);
 		return solutions;
-	}
-	
-	public Solution solve(int timeLimitInSec) { // PROBLEM RESOLUTION
-		return solve(Objective.MINIMIZE,timeLimitInSec);
-	}
-	
-	public Solution solve(Objective objectiveType) { // PROBLEM RESOLUTION
-		return solve(objectiveType,0);
 	}
 	
 	/**
 	 * Solves the optimization problem using Objective.MINIMIZE
 	 */
-	public Solution solve() { 
-		return solve(Objective.MINIMIZE,0); 
-	}
-	
 	public Solution minimize() { 
 		return optimize(Objective.MINIMIZE);
 	}
@@ -145,10 +115,11 @@ public abstract class JavaSolver {
 		return optimize(Objective.MAXIMIZE);
 	}
 	
-	public void setTimeLimit(int timeLimitInSec) {
-		this.timeLimitInSec = timeLimitInSec; 
-	}
-		
+	/**
+	 * Solves the optimization problem using the objective type Objective.MINIMIZE or Objective.MAXIMIZE
+	 * @param objectiveType
+	 * @return
+	 */
 	public Solution optimize(Objective objectiveType) {
 		Solver solver = csp.getSolver();
 		solver.traceSolutions(true);
@@ -158,7 +129,7 @@ public abstract class JavaSolver {
 		Solution solution = null;
 		if (objective != null) {
 			log("=== Find Optimal Solution:");
-			solution = solver.findOptimalSolution(objectiveType,objectiveVar);
+			solution = solver.findOptimalSolution(objectiveType,objective);
 		}
 		else {
 			log("=== Find a Feasible Solution:");
@@ -172,15 +143,75 @@ public abstract class JavaSolver {
 		}
 		return solution;
 	}
+	
+	/**
+	 * Sets a time limit for the solution search
+	 * @param timeLimitInSec a time limit in seconds
+	 */
+	public void setTimeLimit(int timeLimitInSec) {
+		this.timeLimitInSec = timeLimitInSec; 
+	}
+	
+	/**
+	 * This method forces Java Solver to consider no more possible solutions than "maxSolutions"
+	 * @param maxSolutions
+	 */
+	public void setMaxNumberOfSolutions(int maxSolutions) {
+		this.maxNumberOfSolutions = maxSolutions;
+	}
+	
+	/**
+	 * Sets a variable selector used during the solution search. By default, the varSelectorType is 
+	 * VarSelectorType.INPUT_ORDER - selects variables in order they were defined in the method define().
+	 * Other useful selector types:
+	 * VarSelectorType.MIN_VALUE - selects variables with smallest lower bound first
+	 * VarSelectorType.MAX_VALUE - selects variables with largest lower bound first
+	 * VarSelectorType.MIN_DOMAIN - selects variables with the minimal size of domain
+	 * VarSelectorType.MIN_DOMAIN_MIN_VALUE - selects variables with the minimal size of domain. The smallest lower bound serves as tie break
+	 * VarSelectorType.RANDOM - selects variables randomly
+	 * @param varSelectorType
+	 */
+	public void setVarSelector(VarSelectorType varSelectorType) { 
+		Solver solver = csp.getSolver();
+		SearchStrategy strategy = solver.getSearchStrategy();
+		strategy.setVarSelectorType(varSelectorType);
+	}
+	
+	/**
+	 * Sets a value selector used during the solution search. By default, the valueSelectorType is 
+	 * VarSelectorType.INPUT_ORDER - selects variables in order they were defined in the method define().
+	 * Other useful selector types:
+	 * ValueSelectorType.MIN - try values in increasing order
+	 * ValueSelectorType.MAX - try values in decreasing order
+	 * ValueSelectorType.MIDDLE - try values in the middle of domain
+	 * ValueSelectorType.RANDOM - try a random value
+	 * @param valueSelectorType
+	 */
+	public void setValueSelector(ValueSelectorType valueSelectorType) { 
+		Solver solver = csp.getSolver();
+		SearchStrategy strategy = solver.getSearchStrategy();
+		strategy.setValueSelectorType(valueSelectorType);
+	}
 
 	/**
-	 * Problem specific method that save value from the solution to business objects
+	 * Problem specific method that saves values from the solution to business objects
 	 * This method is called after the JavaSolver's method solve(), minimize() 
 	 * or maximize() finds a solution
 	 * @param solution
 	 */
 	public void saveSolution(Solution solution) {
 		solution.log();
+	}
+	
+	/**
+	 * Problem specific method that saves values from all found solution to business objects
+	 * This method is called after the JavaSolver's method solveAll()
+	 * @param solutions
+	 */
+	public void saveSolutions(Solution[] solutions) {
+		for(Solution solution : solutions) {
+			saveSolution(solution);
+		}
 	}
 
 }

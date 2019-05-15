@@ -8,17 +8,8 @@ public class BlendingProblem extends JavaSolver {
 	
 	public void define() {
 
-		Var numberOf30Buses = csp.variable("Number Of Buses With 30 Seats", 0, 30);
-		Var numberOf40Buses = csp.variable("Number Of Buses With 40 Seats", 0, 30);
-		int[] seats = new int[] { 30, 40 };
-		Var[] vars = new Var[] { numberOf30Buses, numberOf40Buses };
-		Var numberOfAllSeats = csp.scalProd("Number Of All Seats", seats, vars);
-		csp.post(numberOfAllSeats, ">=", 300);
-		int[] costs = new int[] { 400, 500 };
-//		String oilTypes[] = { "Crude1", "Crude2", "Crude3" };
-//		String gasTypes[] = { "Super", "Regular", "Diesel" };
-		String oilTypes[] = { "Crd1", "Crd2", "Crd3" };
-		String gasTypes[] = { "Sup", "Reg", "Die" };
+		String oilTypes[] = { "Crude1", "Crude2", "Crude3" };
+		String gasTypes[] = { "Super", "Regular", "Diesel" };
 		int demands[] = { 3000, 2000, 1000 };
 		int capacities[] = { 5000, 5000, 5000 };
 		int gasOctane[] = { 10, 8, 6 };
@@ -70,10 +61,8 @@ public class BlendingProblem extends JavaSolver {
 			vars1[n] = adv[i];
 			n++;
 		}
-		// Var costFunc = csp.scalProd(income, blends).minus(p.sum(adv));
 		Var costFunc = csp.scalProd(coef1, vars1);
 		csp.add("costFunc", costFunc);
-		// csp.setObjectiveReal(costFunc);
 
 		// demand constraints
 		for (int j = 0; j < gasTypes.length; j++) {

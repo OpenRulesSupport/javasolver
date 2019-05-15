@@ -16,14 +16,14 @@ public class ProblemZoo extends JavaSolver {
 
 	public void define() {
 
-		Var numberOf30Buses = csp.variable("Number Of Buses With 30 Seats", 0, 30);
-		Var numberOf40Buses = csp.variable("Number Of Buses With 40 Seats", 0, 30);
+		Var numberOf30Buses = csp.variable("Number Of 30 seats buses", 0, 30);
+		Var numberOf40Buses = csp.variable("Number Of 40 seats buses", 0, 30);
 		int[] seats = new int[] { 30, 40 };
 		Var[] vars = new Var[] { numberOf30Buses, numberOf40Buses };
-		Var numberOfAllSeats = csp.scalProd("Number Of All Seats", seats, vars);
-		csp.post(numberOfAllSeats, ">=", 300);
+		Var totalNumberOfSeats = csp.scalProd("Total number of seats", seats, vars);
+		csp.post(totalNumberOfSeats, ">=", 300);
 		int[] costs = new int[] { 400, 500 };
-		Var totalCost = csp.scalProd("Total Cost", costs, vars);
+		Var totalCost = csp.scalProd("Total cost", costs, vars);
 		setObjective(totalCost);
 	}
 
