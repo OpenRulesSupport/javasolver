@@ -23,21 +23,14 @@ public class XYZ extends JavaSolver {
 		setObjective(objective);
 	}
 	
-	public void saveSolution(Solution solution) {	
-		solution.log();
-		for(Var var : csp.getVars()) {
-			String name = var.getName();
-			log(var.getName() + " = " + solution.getValue(name));
-		}
-	}
-
 	public static void main(String[] args) {
 		XYZ problem = new XYZ();
 		problem.define();
-		
-		problem.setValueSelector(ValueSelectorType.MAX);
-		problem.setMaxNumberOfSolutions(5);
+//		problem.setValueSelector(ValueSelectorType.MAX);
+//		problem.setMaxNumberOfSolutions(10);
+		problem.minimize();
+		problem.maximize();
 		problem.solveAll();
-		//problem.maximize();
 	}
+
 }

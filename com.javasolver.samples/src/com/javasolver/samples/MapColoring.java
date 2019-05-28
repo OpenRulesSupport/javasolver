@@ -47,8 +47,8 @@ public class MapColoring extends JavaSolver {
 	}
 
 	public static void main(String[] args) {
-		MapColoring mc = new MapColoring();
-		mc.define();
-		mc.solve();
+		MapColoring map = new MapColoring();
+		map.define();
+		map.solve();
 	}
 }

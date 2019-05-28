@@ -11,6 +11,8 @@ import javax.constraints.Var;
 import javax.constraints.VarSelectorType;
 
 public class JavaSolver {
+	
+	static final String RELEASE = "Java Solver Release 1.0.0 (build of May 20, 2019)";
 
 	protected Problem csp; // used by all subclasses
 	protected Var objectiveVar;
@@ -23,7 +25,8 @@ public class JavaSolver {
 	 */
 	public JavaSolver() {
 		csp = ProblemFactory.newProblem(getClass().getName());
-		log("=== JavaSolver problem: "+getClass().getName());
+		log(RELEASE);
+		log("Problem: "+getClass().getName());
 		objectiveVar = null;
 		maxNumberOfSolutions = 0;
 		timeLimitInSec = 0;
@@ -68,7 +71,7 @@ public class JavaSolver {
 	 * @return true is an solution is found and false otherwise
 	 */
 	public Solution solve() { 
-		log("=== Find a Feasible Solution:");
+		log("Find a Feasible Solution:");
 		Solver solver = csp.getSolver();
 		solver.traceSolutions(true);
 		if (timeLimitInSec > 0)
@@ -87,7 +90,7 @@ public class JavaSolver {
 	
 	public Solution[] solveAll() {  
 
-		log("=== Find All Solutions:");
+		log("Find All Solutions:");
 		Solver solver = csp.getSolver();
 		solver.traceSolutions(true);
 		if (timeLimitInSec > 0)
@@ -108,10 +111,12 @@ public class JavaSolver {
 	 * Solves the optimization problem using Objective.MINIMIZE
 	 */
 	public Solution minimize() { 
+		log("Minimize: "+getObjective());
 		return optimize(Objective.MINIMIZE);
 	}
 	
 	public Solution maximize() { 
+		log("Maximize: "+getObjective());
 		return optimize(Objective.MAXIMIZE);
 	}
 	
@@ -128,7 +133,6 @@ public class JavaSolver {
 		Var objective = getObjective();
 		Solution solution = null;
 		if (objective != null) {
-			log("=== Find Optimal Solution:");
 			solution = solver.findOptimalSolution(objectiveType,objective);
 		}
 		else {

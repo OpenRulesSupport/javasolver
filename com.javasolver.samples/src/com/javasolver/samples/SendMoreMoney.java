@@ -19,7 +19,6 @@ import com.javasolver.JavaSolver;
 
 public class SendMoreMoney extends JavaSolver {
 	
-	// Problem Definition
 	public void define() {
 		// define variables
 		Var S = csp.variable( "S",1, 9);
@@ -42,7 +41,6 @@ public class SendMoreMoney extends JavaSolver {
 		csp.post(scalProduct, "=", 0);
 	}
 		
-	// This method is called after the Optimization's method solve() finds a solution
 	public void saveSolution(Solution s) {	
 		s.log();
 		log("  "+s.getValue("S")+s.getValue("E")+s.getValue("N")+s.getValue("D"));
