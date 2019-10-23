@@ -12,7 +12,7 @@ import javax.constraints.VarSelectorType;
 
 public class JavaSolver {
 	
-	static final String RELEASE = "Java Solver Release 1.0.0 (build of May 20, 2019)";
+	static final String RELEASE = "Java Solver Release 1.0.1 (build of Oct 23, 2019)";
 
 	protected Problem csp; // used by all subclasses
 	protected Var objectiveVar;
