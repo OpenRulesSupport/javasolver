@@ -23,7 +23,7 @@ public class MapColoringStrings extends JavaSolver {
 			VarString Denmark = csp.variableString("Denmark", colors);
 			VarString France = csp.variableString("France", colors);
 			VarString Germany = csp.variableString("Germany", colors);
-			VarString Netherlands = csp.variableString("Netherland", colors);
+			VarString Netherlands = csp.variableString("Netherlands", colors);
 			VarString Luxembourg = csp.variableString("Luxembourg", colors);
 			// Constraints
 			csp.post(France, "!=", Belgium);

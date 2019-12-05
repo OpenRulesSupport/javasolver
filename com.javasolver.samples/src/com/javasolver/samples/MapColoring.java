@@ -16,7 +16,7 @@ import com.javasolver.JavaSolver;
 public class MapColoring extends JavaSolver {
 
 	static String[] colors = { "red", "green", "blue", "yellow" };
-	static String[] countries = {"Belgium","Denmark","France","Germany","Netherland","Luxembourg"};
+	static String[] countries = {"Belgium","Denmark","France","Germany","Netherlands","Luxembourg"};
 
 	public void define() {
 			// Variables
@@ -25,7 +25,7 @@ public class MapColoring extends JavaSolver {
 			Var Denmark = csp.variable("Denmark", 0, n);
 			Var France  = csp.variable("France", 0, n);
 			Var Germany = csp.variable("Germany", 0, n);
-			Var Netherlands = csp.variable("Netherland", 0, n);
+			Var Netherlands = csp.variable("Netherlands", 0, n);
 			Var Luxembourg = csp.variable("Luxembourg", 0, n);
 			// Constraints
 			csp.post(France, "!=", Belgium);
