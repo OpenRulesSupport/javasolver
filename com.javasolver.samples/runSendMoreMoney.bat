@@ -1,5 +1,5 @@
 set CLASS_NAME=com.javasolver.samples.SendMoreMoney
-set SOLVER=CONSTRAINER
+@echo off
 cd %~dp0
-call ..\com.javasolver\run
+call .\run
 pause

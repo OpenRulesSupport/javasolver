@@ -42,7 +42,7 @@ public class MapColoring extends JavaSolver {
 	public void saveSolution(Solution solution) {
 		solution.log();
 		for (String country : countries) {
-			csp.log(country + ": " + colors[solution.getValue(country)]);
+			System.out.println(country + ": " + colors[solution.getValue(country)]);
 		}
 	}
 

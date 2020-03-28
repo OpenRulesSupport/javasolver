@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.javasolver</groupId>
+	<artifactId>javasolver</artifactId>
+	<version>2.0.0_COIN</version>
+    <packaging>jar</packaging>
+    
+    <name>Java Solver</name>
+  	<description>Modeling and Solving Optimization Problems with Java and Constraint/Linear Solvers</description>
+    <url>http://javasolver.com</url>
+    
+    <licenses>
+	    <license>
+	      <name>GNU Lesser General Public License (LGPL)</name>
+	      <url>https://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html</url>
+	      <distribution>repo</distribution>
+	    </license>
+    </licenses>
+    
+    <scm>
+	    <connection>scm:git:https://github.com/OpenRulesSupport/javasolver.git</connection>
+		<url>https://github.com/OpenRulesSupport/javasolver.git</url>
+		<tag>HEAD</tag>
+	</scm>
+
+	<properties>
+		<maven.compiler.source>1.8</maven.compiler.source>
+		<maven.compiler.target>1.8</maven.compiler.target>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	
+	<developers>
+		<developer>
+			<name>OpenRules</name>
+			<email>support@openrules.com</email>
+			<organization>OpenRules, Inc.</organization>
+			<organizationUrl>https://openrules.com</organizationUrl>
+		</developer>
+	</developers>
+	
+	<dependencies>
+		<dependency>
+			<groupId>com.javasolver</groupId>
+			<artifactId>jsr331</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.javasolver</groupId>
+			<artifactId>jsr331-coin</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>com.javasolver</groupId>
+			<artifactId>jsr331-linear</artifactId>
+			<version>1.2.2</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>4.12</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.2</version>
+		</dependency>
+	</dependencies>
+
+</project>

@@ -67,10 +67,10 @@ public class Haiku extends JavaSolver {
 	
 	public void saveSolution(Solution s) {	
 		s.log();
-		log("  " + s.getValue("X") + explain(s,"X"));
-		log("+ " + s.getValue("Y")  + explain(s,"Y"));
-		log("= " + s.getValue("Z")  + explain(s,"Z"));
-		log("");
+		System.out.println("  " + s.getValue("X") + explain(s,"X"));
+		System.out.println("+ " + s.getValue("Y")  + explain(s,"Y"));
+		System.out.println("= " + s.getValue("Z")  + explain(s,"Z"));
+		System.out.println("");
 	}
 }
 

@@ -43,10 +43,10 @@ public class SendMoreMoney extends JavaSolver {
 		
 	public void saveSolution(Solution s) {	
 		s.log();
-		log("  "+s.getValue("S")+s.getValue("E")+s.getValue("N")+s.getValue("D"));
-		log("+ "+s.getValue("M")+s.getValue("O")+s.getValue("R")+s.getValue("E"));
-		log("=======");
-		log(" "+s.getValue("M")+s.getValue("O")+s.getValue("N")+s.getValue("E")+s.getValue("Y"));
+		System.out.println("  "+s.getValue("S")+s.getValue("E")+s.getValue("N")+s.getValue("D"));
+		System.out.println("+ "+s.getValue("M")+s.getValue("O")+s.getValue("R")+s.getValue("E"));
+		System.out.println("=======");
+		System.out.println(" "+s.getValue("M")+s.getValue("O")+s.getValue("N")+s.getValue("E")+s.getValue("Y"));
 	}
 		
 		

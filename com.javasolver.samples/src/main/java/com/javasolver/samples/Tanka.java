@@ -80,12 +80,12 @@ public class Tanka extends JavaSolver {
 	
 	public void saveSolution(Solution s) {	
 		s.log(10);
-		log("  " + s.getValue("A") + explain(s,"A"));
-		log("+ " + s.getValue("B") + explain(s,"B"));
-		log("+ " + s.getValue("C") + explain(s,"C"));
-		log("+ " + s.getValue("D") + explain(s,"D"));
-		log("= " + s.getValue("E") + explain(s,"E"));
-		log(""); 
+		System.out.println("  " + s.getValue("A") + explain(s,"A"));
+		System.out.println("+ " + s.getValue("B") + explain(s,"B"));
+		System.out.println("+ " + s.getValue("C") + explain(s,"C"));
+		System.out.println("+ " + s.getValue("D") + explain(s,"D"));
+		System.out.println("= " + s.getValue("E") + explain(s,"E"));
+		System.out.println(""); 
 	}
 }
 

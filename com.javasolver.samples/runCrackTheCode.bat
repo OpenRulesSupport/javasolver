@@ -1,7 +1,6 @@
 set CLASS_NAME=com.javasolver.samples.CrackTheCode
-set SOLVER=CONSTRAINER
-rem set SOLVER=SCIP
+@echo off
 cd %~dp0
-call ..\com.javasolver\run
+call .\run
 pause
 
