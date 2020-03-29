@@ -1,6 +1,5 @@
 # javasolver
-A very simple Java API for Constraint and Linear Solvers
-This package is supported from http://javasolver.com
+This is a very simple Java API for Constraint and Linear Solvers supported from http://javasolver.com.
 
 Java Solver is an open source product that provides a minimalistic, simple-to-use Java API for modeling and solving optimization problems. It contains only one class JavaSolver, from which you need to inherit your own Solver. This class may have only one method define() that will use your own Java objects to define constrained variables and posting constraints on them. Java Solver uses the basic methods of the standard Constraint Programming API JSR-331 (https://jsr331.org/). 
 
