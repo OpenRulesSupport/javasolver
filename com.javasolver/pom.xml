@@ -23,6 +23,7 @@
 	<scm>
 		<connection>scm:git:https://github.com/OpenRulesSupport/javasolver.git</connection>
 		<url>https://github.com/OpenRulesSupport/javasolver.git</url>
+		<tag>HEAD</tag>
 	</scm>
 
 	<properties>
