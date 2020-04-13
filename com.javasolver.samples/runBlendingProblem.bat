@@ -1,6 +1,6 @@
 set CLASS_NAME=com.javasolver.samples.BlendingProblem
-set SOLVER=Scip
-rem set SOLVER=GLPK
+rem set SOLVER=Scip
+set SOLVER=GLPK
 rem set SOLVER=Coin
 @echo off
 cd %~dp0

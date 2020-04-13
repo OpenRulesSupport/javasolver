@@ -9,13 +9,15 @@ import javax.constraints.Solver;
 import javax.constraints.ValueSelectorType;
 import javax.constraints.Var;
 import javax.constraints.VarSelectorType;
+import javax.constraints.VarReal;
 
 public class JavaSolver {
 	
-	static final String RELEASE = "Java Solver Release 2.0.1 (build of Apr 2, 2020)";
+	static final String RELEASE = "Java Solver Release 2.0.2 (build of Apr 13, 2020)";
 
 	protected Problem csp; // used by all subclasses
 	protected Var objectiveVar;
+	protected VarReal objectiveVarReal;
 	protected int maxNumberOfSolutions;
 	protected int timeLimitInSec; 
 
@@ -48,15 +50,35 @@ public class JavaSolver {
 	}
 	
 	/**
-	 * Sets an optimization objective used by methods minimize() or maximize()
+	 * Sets an optimization objective as Var used by methods minimize() or maximize()
 	 * @param objectiveVar
 	 */
 	public void setObjective(Var objectiveVar) {
 		this.objectiveVar = objectiveVar;
 	}
 	
+	/**
+	 * 
+	 * @return an objective - integer constrained var
+	 */
 	public Var getObjective() {
 		return objectiveVar;
+	}
+	
+	/**
+	 * Sets an optimization objective as VarReal used by methods minimize() or maximize()
+	 * @param objectiveVar
+	 */
+	public void setObjectiveReal(VarReal objectiveVar) {
+		this.objectiveVarReal = objectiveVar;
+	}
+	
+	/**
+	 * 
+	 * @return an objective - real constrained var
+	 */
+	public VarReal getObjectiveReal() {
+		return objectiveVarReal;
 	}
 	
 	/**
@@ -135,9 +157,15 @@ public class JavaSolver {
 		if (objective != null) {
 			solution = solver.findOptimalSolution(objectiveType,objective);
 		}
-		else {
-			log("=== Find a Feasible Solution:");
-			solution = solver.findSolution();
+		else { // try VarReal
+			VarReal objectiveReal = getObjectiveReal();
+			if (objectiveReal != null) {
+				solution = solver.findOptimalSolution(objectiveType,objectiveReal);
+			}
+			else {
+				log("=== Find a Feasible Solution:");
+				solution = solver.findSolution();
+			}
 		}
 		solver.logStats();
 		if (solution != null) {

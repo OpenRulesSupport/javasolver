@@ -49,7 +49,7 @@ COLUMNS
     Vi11                C1                  -1   C4                 -10   
     Vi12                C1                  -1   
     M0001     'MARKER'                 'INTEND'
-    Vi12                _OBJ_                1   
+    Vi12                _OBJ_               -1   
 RHS
     rhs                 C2                3000   C3                2000   
     rhs                 C4                1000   C5                5000   

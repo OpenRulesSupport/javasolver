@@ -5,11 +5,11 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.javasolver</groupId>
 	<artifactId>javasolver</artifactId>
-	<version>2.0.1</version>
+	<version>2.0.2</version>
 	<packaging>jar</packaging>
 
 	<name>Java Solver</name>
-	<description>Modeling and Solving Optimization Problems with Java and Constraint/Linear Solvers</description>
+	<description>A Simple Java API for Modeling and Solving Optimization Problems with off-the-shelf Constraint/Linear Solvers</description>
 	<url>http://javasolver.com</url>
 
 	<licenses>
@@ -45,7 +45,7 @@
 		<dependency>
 			<groupId>com.javasolver</groupId>
 			<artifactId>jsr331</artifactId>
-			<version>2.0.1</version>
+			<version>2.0.2</version>
 		</dependency>
 	</dependencies>
 
