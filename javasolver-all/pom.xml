@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.javasolver</groupId>
 	<artifactId>javasolver-all</artifactId>
-	<version>2.0.2</version>
+	<version>2.0.3</version>
 
 	<name>javasolver-all</name>
 	<description>includes all possible Java Solver dependencies</description>
@@ -29,14 +29,14 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<log4j.version>2.7</log4j.version>
-		<jsr331.version>2.0.2</jsr331.version>
+		<jsr331.version>2.0.3</jsr331.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.javasolver</groupId>
 			<artifactId>javasolver</artifactId>
-			<version>2.0.2</version>
+			<version>2.0.3</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
@@ -75,6 +75,22 @@
 					<groupId>com.javasolver</groupId>
 					<artifactId>jsr331-constrainer</artifactId>
 					<version>2.0.1</version>
+				</dependency>
+			</dependencies>
+		</profile>
+		<profile>
+			<id>Sugar</id>
+			<activation>
+				<property>
+					<name>solver</name>
+					<value>Sugar</value>
+				</property>
+			</activation>
+			<dependencies>
+				<dependency>
+					<groupId>com.javasolver</groupId>
+					<artifactId>jsr331-sugar</artifactId>
+					<version>${jsr331.version}</version>
 				</dependency>
 			</dependencies>
 		</profile>

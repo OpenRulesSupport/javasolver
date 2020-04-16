@@ -1,5 +1,6 @@
 set CLASS_NAME=com.javasolver.samples.MapColoring
-set SOLVER=Constrainer
+rem set SOLVER=Constrainer
+set SOLVER=Sugar
 rem set SOLVER=Choco
 rem set SOLVER=JSetL
 @echo off
