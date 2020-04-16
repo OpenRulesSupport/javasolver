@@ -1,4 +1,4 @@
-# Java Solver 2.0.2 &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; www.javasolver.com    
+# Java Solver 2.0.3 &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; www.javasolver.com    
 [![N|Solid](https://javasolvers.files.wordpress.com/2019/05/image.png?w=97)](http://jcp.org/en/jsr/detail?id=331) 
 [Java Solver](http://javasolver.com) is a simple Java API for Modeling and Solving Optimization Problems using off-the-shelf Constraint and Linear Solvers. 
 # Motivation
@@ -22,7 +22,11 @@ The first two folders are only for your reference if you want to understand deep
 # Installation
 After you download the folder "**com.javasolver.samples**", in general you *do not need any installation*. This folder contains ready to be executed examples of constraint satisfaction and optimization problems. You may just run the corresponding batch-files to execute various examples. During the first run all necessary software packages including JSR331 will be downloaded automatically from the [Maven Repository](https://mvnrepository.com/search?q=javasolver). 
 
-**Constraint Solvers**. If you use the underlying constraint solver [Constrainer](https://github.com/OpenRulesSupport/jsr331/tree/master/org.jcp.jsr331.constrainer), you don't need to install anything else. Just double-click on the provided batch files such as "*runSendMoreMoney.bat*" to execute the sample problem ["SendMoreMoney"](https://github.com/OpenRulesSupport/javasolver/blob/master/com.javasolver.samples/src/main/java/com/javasolver/samples/SendMoreMoney.java). 
+**Constraint Solvers**. There are two underlying constraint solvers
+* [Sugar](https://github.com/OpenRulesSupport/jsr331/tree/master/org.jcp.jsr331.sugar)
+* [Constrainer](https://github.com/OpenRulesSupport/jsr331/tree/master/org.jcp.jsr331.constrainer) 
+
+which do not require any additonal installtion. Just double-click on the provided batch files such as "*runSendMoreMoney.bat*" to execute the sample problem ["SendMoreMoney"](https://github.com/OpenRulesSupport/javasolver/blob/master/com.javasolver.samples/src/main/java/com/javasolver/samples/SendMoreMoney.java). 
 However, if you want to try alternative constraint solvers Choco2 or JSetL, first you need to execute (double-click on) the following files:
 - com.javasolver.samples/lib/choco2/installChoco2.bat
 - com.javasolver.samples/lib/jsetl2/installJSetL.bat
@@ -64,6 +68,7 @@ set CLASS_NAME=com.javasolver.samples.ProblemZoo
 rem set SOLVER=Scip
 rem set SOLVER=GLPK
 set SOLVER=Constrainer
+rem set SOLVER=Sugar
 @echo off
 cd %~dp0
 call .\run
@@ -80,14 +85,15 @@ Java Solver and JSR331 are mavenized and are available for automatic download fr
 		<dependency>
 			<groupId>com.javasolver</groupId>
 			<artifactId>javasolver-all</artifactId>
-			<version>2.0.2</version>
+			<version>2.0.3</version>
 		</dependency>
 	</dependencies>
 ~~~
 It includes dependencies to all constraint and linear solvers currently included in the JSR331:
 **Open source constraint solvers**: 
--	[Choco™](http://choco.sourceforge.net/) (version 2, BSD license) 
+-	[Sugar™](http://bach.istc.kobe-u.ac.jp/sugar/) (version 2.1.3, BSD-3-Clause license) 
 -	[Constrainer™](http://sourceforge.net/projects/openl-tablets/?source=directory) (GNU LGPL license)
+-	[Choco™](http://choco.sourceforge.net/) (version 2, BSD license) 
 -	[JSetL™](http://cmt.math.unipr.it/jsetl.html) (GNU GPL license)
 
 **Open Source LP Solvers**:
