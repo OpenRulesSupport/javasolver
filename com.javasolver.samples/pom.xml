@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.javasolver</groupId>
 	<artifactId>javasolver-samples</artifactId>
-	<version>2.0.3</version>
+	<version>2.0.4</version>
 	<packaging>jar</packaging>
 
 	<name>Java Solver Samples</name>
@@ -24,7 +24,12 @@
 		<dependency>
 			<groupId>com.javasolver</groupId>
 			<artifactId>javasolver-all</artifactId>
-			<version>2.0.3</version>
+			<version>${project.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.javasolver</groupId>
+			<artifactId>jsr331-scheduler</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 	</dependencies>
 
