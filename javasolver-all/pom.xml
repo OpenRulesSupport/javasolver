@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.javasolver</groupId>
 	<artifactId>javasolver-all</artifactId>
-	<version>2.0.4</version>
+	<version>2.0.4.1</version>
 
 	<name>javasolver-all</name>
 	<description>includes all possible Java Solver dependencies</description>
@@ -29,14 +29,14 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<log4j.version>2.7</log4j.version>
-		<jsr331.version>${project.version}</jsr331.version>
+		<jsr331.version>2.0.4</jsr331.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.javasolver</groupId>
 			<artifactId>javasolver</artifactId>
-			<version>${project.version}</version>
+			<version>${jsr331.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
@@ -129,11 +129,12 @@
 		</profile>
 		<profile>
 			<id>Scip</id>
-			<!-- 
 			<activation>
-	            <activeByDefault>true</activeByDefault>
-	        </activation>
-	        -->
+				<property>
+					<name>solver</name>
+					<value>Scip</value>
+				</property>
+			</activation>
 			<dependencies>
 				<dependency>
 					<groupId>com.javasolver</groupId>
@@ -149,6 +150,12 @@
 		</profile>
 		<profile>
 			<id>GLPK</id>
+			<activation>
+				<property>
+					<name>solver</name>
+					<value>GLPK</value>
+				</property>
+			</activation>
 			<dependencies>
 				<dependency>
 					<groupId>com.javasolver</groupId>
@@ -164,6 +171,12 @@
 		</profile>
 		<profile>
 			<id>Coin</id>
+			<activation>
+				<property>
+					<name>solver</name>
+					<value>Coin</value>
+				</property>
+			</activation>
 			<dependencies>
 				<dependency>
 					<groupId>com.javasolver</groupId>
