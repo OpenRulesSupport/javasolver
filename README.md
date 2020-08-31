@@ -85,7 +85,7 @@ Java Solver and JSR331 are mavenized and are available for automatic download fr
 		<dependency>
 			<groupId>com.javasolver</groupId>
 			<artifactId>javasolver-all</artifactId>
-			<version>2.0.4</version>
+			<version>2.0.4.1</version>
 		</dependency>
 	</dependencies>
 ~~~
