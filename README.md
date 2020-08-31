@@ -1,4 +1,4 @@
-# Java Solver 2.0.3 &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; www.javasolver.com    
+# Java Solver 2.0.4 &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; www.javasolver.com    
 [![N|Solid](https://javasolvers.files.wordpress.com/2019/05/image.png?w=97)](http://jcp.org/en/jsr/detail?id=331) 
 [Java Solver](http://javasolver.com) is a simple Java API for Modeling and Solving Optimization Problems using off-the-shelf Constraint and Linear Solvers. 
 # Motivation
@@ -25,11 +25,11 @@ After you download the folder "**com.javasolver.samples**", in general you *do n
 **Constraint Solvers**. There are two underlying constraint solvers
 * [Sugar](https://github.com/OpenRulesSupport/jsr331/tree/master/org.jcp.jsr331.sugar)
 * [Constrainer](https://github.com/OpenRulesSupport/jsr331/tree/master/org.jcp.jsr331.constrainer) 
+* [JSetL] (http://www.clpset.unipr.it/jsetl/)
 
 which do not require any additonal installtion. Just double-click on the provided batch files such as "*runSendMoreMoney.bat*" to execute the sample problem ["SendMoreMoney"](https://github.com/OpenRulesSupport/javasolver/blob/master/com.javasolver.samples/src/main/java/com/javasolver/samples/SendMoreMoney.java). 
-However, if you want to try alternative constraint solvers Choco2 or JSetL, first you need to execute (double-click on) the following files:
+However, if you want to try an alternative constraint solver Choco2, first you need to execute (double-click on) the following file:
 - com.javasolver.samples/lib/choco2/installChoco2.bat
-- com.javasolver.samples/lib/jsetl2/installJSetL.bat
 
 It is necessary because the current JSR331 implementations of these open source solvers rely on their old versions, but we plan to switch to the latest version soon.
 
@@ -85,7 +85,7 @@ Java Solver and JSR331 are mavenized and are available for automatic download fr
 		<dependency>
 			<groupId>com.javasolver</groupId>
 			<artifactId>javasolver-all</artifactId>
-			<version>2.0.3</version>
+			<version>2.0.4</version>
 		</dependency>
 	</dependencies>
 ~~~
