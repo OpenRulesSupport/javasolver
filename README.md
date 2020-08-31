@@ -25,7 +25,7 @@ After you download the folder "**com.javasolver.samples**", in general you *do n
 **Constraint Solvers**. There are two underlying constraint solvers
 * [Sugar](https://github.com/OpenRulesSupport/jsr331/tree/master/org.jcp.jsr331.sugar)
 * [Constrainer](https://github.com/OpenRulesSupport/jsr331/tree/master/org.jcp.jsr331.constrainer) 
-* [JSetL] (http://www.clpset.unipr.it/jsetl/)
+* [JSetL](http://www.clpset.unipr.it/jsetl/)
 
 which do not require any additonal installtion. Just double-click on the provided batch files such as "*runSendMoreMoney.bat*" to execute the sample problem ["SendMoreMoney"](https://github.com/OpenRulesSupport/javasolver/blob/master/com.javasolver.samples/src/main/java/com/javasolver/samples/SendMoreMoney.java). 
 However, if you want to try an alternative constraint solver Choco2, first you need to execute (double-click on) the following file:
