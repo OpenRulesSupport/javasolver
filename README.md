@@ -1,4 +1,4 @@
-# Java Solver 2.0.4 &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; www.javasolver.com    
+# Java Solver 2.1.4 &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; www.javasolver.com    
 [![N|Solid](https://javasolvers.files.wordpress.com/2019/05/image.png?w=97)](http://jcp.org/en/jsr/detail?id=331) 
 [Java Solver](http://javasolver.com) is a simple Java API for Modeling and Solving Optimization Problems using off-the-shelf Constraint and Linear Solvers. 
 # Motivation
@@ -27,18 +27,20 @@ After you download the folder "**com.javasolver.samples**", in general you *do n
 * [Constrainer](https://github.com/OpenRulesSupport/jsr331/tree/master/org.jcp.jsr331.constrainer) 
 * [JSetL](http://www.clpset.unipr.it/jsetl/)
 
-which do not require any additonal installtion. Just double-click on the provided batch files such as "*runSendMoreMoney.bat*" to execute the sample problem ["SendMoreMoney"](https://github.com/OpenRulesSupport/javasolver/blob/master/com.javasolver.samples/src/main/java/com/javasolver/samples/SendMoreMoney.java). 
+which do not require any additonal installation. Just double-click on the provided batch files such as "*runSendMoreMoney.bat*" to execute the sample problem ["SendMoreMoney"](https://github.com/OpenRulesSupport/javasolver/blob/master/com.javasolver.samples/src/main/java/com/javasolver/samples/SendMoreMoney.java). 
 However, if you want to try an alternative constraint solver Choco2, first you need to execute (double-click on) the following file:
 - com.javasolver.samples/lib/choco2/installChoco2.bat
 
 It is necessary because the current JSR331 implementations of these open source solvers rely on their old versions, but we plan to switch to the latest version soon.
 
-**Linear Solvers**. All currently available linear solvers (open source or commercial) use the executable files of the corresponding solvers that cannot be included into the Maven Repository. It means that you need to install these solvers from their original repositories and make sure that your Environment variable PATH includes the path to their executables. Here are the names of the executable and URLs from where you may download linear solvers:
+**Linear Solvers**. The majority of currently available linear solvers (open source or commercial) use the executable files of the corresponding solvers that cannot be included into the Maven Repository. It means that you need to install these solvers from their original repositories and make sure that your Environment variable PATH includes the path to their executables. Here are the names of the executable and URLs from where you may download linear solvers:
 - COIN: clp.exe, https://projects.coin-or.org/Clp/
 - SCIP: scip.exe, https://scip.zib.de/index.php/
 - GLPK: glpsol.exe, https://www.gnu.org/software/glpk/
 - CPLEX: cplex.exe, http://www-01.ibm.com/software/integration/optimization/cplex-optimizer/
 - GUROBI: gurobi.exe, http://www.gurobi.com/
+
+However, the linear solver CLP (https://github.com/coin-or/Clp) can be used without an additional installation thnks to the library clp-java (https://github.com/quantego/clp-java). It can work only with real veraiable and doesn't support MIP.
 
 # Run Examples
 All examples can be found in the folder "src/main/java/com/javasolver/samples/". They include both linear and non-linear constraint satisfaction and optimization problems. The folder "com.javasolver.samples" includes several bat-files that can be used to execute the provided sample-problems using different solvers. Let's consider a very simple ProblemZoo described in this introductory [example](https://javasolvers.wordpress.com/introductory-example/). Here is its Java implementation:
@@ -85,7 +87,7 @@ Java Solver and JSR331 are mavenized and are available for automatic download fr
 		<dependency>
 			<groupId>com.javasolver</groupId>
 			<artifactId>javasolver-all</artifactId>
-			<version>2.0.4.1</version>
+			<version>2.1.0</version>
 		</dependency>
 	</dependencies>
 ~~~
