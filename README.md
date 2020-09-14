@@ -40,7 +40,7 @@ It is necessary because the current JSR331 implementations of these open source 
 - CPLEX: cplex.exe, http://www-01.ibm.com/software/integration/optimization/cplex-optimizer/
 - GUROBI: gurobi.exe, http://www.gurobi.com/
 
-However, the linear solver CLP (https://github.com/coin-or/Clp) can be used without an additional installation thnks to the library clp-java (https://github.com/quantego/clp-java). It can work only with real veraiable and doesn't support MIP.
+However, the linear solver CLP (https://github.com/coin-or/Clp) can be used without an additional installation thanks to the library clp-java (https://github.com/quantego/clp-java). It can work only with real variables and doesn't support MIP.
 
 # Run Examples
 All examples can be found in the folder "src/main/java/com/javasolver/samples/". They include both linear and non-linear constraint satisfaction and optimization problems. The folder "com.javasolver.samples" includes several bat-files that can be used to execute the provided sample-problems using different solvers. Let's consider a very simple ProblemZoo described in this introductory [example](https://javasolvers.wordpress.com/introductory-example/). Here is its Java implementation:
