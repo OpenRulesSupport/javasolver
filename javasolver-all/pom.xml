@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.javasolver</groupId>
 	<artifactId>javasolver-all</artifactId>
-	<version>2.1.0</version>
+	<version>2.2.0</version>
 
 	<name>javasolver-all</name>
 	<description>includes all possible Java Solver dependencies</description>
@@ -28,8 +28,8 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<log4j.version>2.13.3</log4j.version>
-		<jsr331.version>2.1.0</jsr331.version>
+		<log4j.version>2.16.0</log4j.version>
+		<jsr331.version>2.2.0</jsr331.version>
 	</properties>
 
 	<dependencies>
@@ -59,6 +59,7 @@
 			<artifactId>log4j-slf4j-impl</artifactId>
 			<version>${log4j.version}</version>
 		</dependency>
+		
 	</dependencies>
 	
 	<profiles>
