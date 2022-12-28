@@ -11,7 +11,7 @@ import com.javasolver.JavaSolver;
  * are the same color. For our example, we will consider six countries: Belgium,
  * Denmark, France, Germany, Netherlands, and Luxembourg. The colors can be
  * blue, white, red or green but white color is missing. Use 3 colors considering 
- * that some constraint can be violated with the relative violation costs:
+ * that some constraint can be violated with the relative violation happinessVars:
  * France - Luxembourg:  257
  * Luxembourg - Germany: 904
  * Luxembourg - Belgium: 568

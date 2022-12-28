@@ -66,6 +66,7 @@
 		<profile>
 			<id>Constrainer</id>
 			<activation>
+			<activeByDefault>true</activeByDefault>
 				<property>
 					<name>solver</name>
 					<value>Constrainer</value>
@@ -82,7 +83,7 @@
 		<profile>
 			<id>Sugar</id>
 			<activation>
-				<activeByDefault>true</activeByDefault>
+				<!--<activeByDefault>true</activeByDefault>-->
 				<property>
 					<name>solver</name>
 					<value>Sugar</value>

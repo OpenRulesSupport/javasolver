@@ -9,12 +9,12 @@ package com.javasolver.warehouse;
  * For each site chosen, the company wants to determine the optimal capacity for 
  * the warehouse. The company considers the average merchandise turnover as 
  * identical from one store to another. However, the distance among locations 
- * and the transportation infrastructure both lead to varying transportation costs 
+ * and the transportation infrastructure both lead to varying transportation happinessVars 
  * for each pair consisting of a store and a warehouse.
  * 
  * The objective is to minimize total cost by determining for each warehouse
  * which stores should be suppled by it and what its capacity should be. The
- * total cost is the sum of supply costs plus the costs of building each
+ * total cost is the sum of supply happinessVars plus the happinessVars of building each
  * warehouse.
  */
 
