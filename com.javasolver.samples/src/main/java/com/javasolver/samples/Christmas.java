@@ -8,8 +8,8 @@ import com.javasolver.JavaSolver;
 /*
 https://dmcommunity.org/challenge-jan-2023/
 This model defines a set of people, a set of giftVars, and the HAPPINESS level and cost of each gift.
-The objective is to maximize the total HAPPINESS, subject to the budget constraint 
-that the total cost of the giftVars must be less than or equal to the budget, 
+The objective is to maximize the total HAPPINESS, subject to the BUDGET constraint 
+that the total cost of the giftVars must be less than or equal to the BUDGET, 
 and the constraint that each person can only receive one gift.
 
 Here is a sample of test data:
@@ -32,13 +32,7 @@ public class Christmas extends JavaSolver {
 	String[] PEOPLE = { "Alice", "Bob", "Carol", "Dave", "Eve" };
 	String[] GIFTS = { "Book", "Toy", "Chocolate", "Wine", "Flowers" };
 	int[] COSTS = { 10, 20, 5, 15, 7 };
-
-	int nbPeople = PEOPLE.length;
-	int nbGifts = GIFTS.length;
-	int budget = 50;
-	int minCost = COSTS[0];
-	int maxCost = COSTS[0];
-	
+	int BUDGET = 50;
 	int[][] HAPPINESS = new int[][] { 
 		{ 3, 2, 5, 1, 4 }, 
 		{ 5, 2, 4, 3, 1 }, 
@@ -47,46 +41,24 @@ public class Christmas extends JavaSolver {
 		{ 4, 3, 1, 2, 5 } 
 	};
 
-	Var[] giftVars;
-	Var[] costVars;
-	Var[] happinessVars;
-
 	public void define() {
 		try {
-			giftVars = csp.variableArray("gift",0, nbGifts - 1, nbPeople);
-			for (int cost : COSTS){
-				if (cost > maxCost)
-					maxCost = cost;
-				if (cost < minCost)
-					minCost = cost;
-			}
-			costVars = csp.variableArray("cost",minCost, maxCost, nbGifts);
+			Var[] giftVars = csp.variableArray("gift",0, GIFTS.length-1, PEOPLE.length);
+			Var[] costVars = csp.variableArray("cost",min(COSTS), max(COSTS), GIFTS.length);
 
-			// Define HAPPINESS vars
-			happinessVars = new Var[nbPeople];
-			int maxHappiness = 0;
-			int maxSumHappiness = 0;
-			
-			for (int i = 0; i < nbPeople; i++) {
-				csp.log(giftVars[i].toString());
-				for (int j = 0; j < HAPPINESS[i].length; j++) {
-					if (maxHappiness < HAPPINESS[i][j])
-						maxHappiness = HAPPINESS[i][j];
-				}
-				happinessVars[i] = csp.variable("HAPPINESS-"+i,0,maxHappiness);
-				csp.add(happinessVars[i]);
+			// Define COST and HAPPINESS constraints
+			Var[] happinessVars = new Var[PEOPLE.length];
+			for (int i = 0; i < PEOPLE.length; i++) {
+				happinessVars[i] = csp.variable("happiness-"+i,min(HAPPINESS[i]),max(HAPPINESS[i]));
 				csp.postElement(HAPPINESS[i], giftVars[i], "=", happinessVars[i]);
-				csp.log(happinessVars[i].toString());
 				csp.postElement(COSTS, giftVars[i], "=", costVars[i]);
-				csp.log(costVars[i].toString());
-				maxSumHappiness += maxHappiness;
 			}
 			
-			// budget constraint
+			// BUDGET constraint
 			Var totalCost = csp.sum(costVars);
 			totalCost.setName("Total Cost");
 			csp.add(totalCost);
-			csp.post(totalCost, "<=", budget);
+			csp.post(totalCost, "<=", BUDGET);
 			csp.log(totalCost.toString());
 			
 			// Define objective
@@ -106,10 +78,9 @@ public class Christmas extends JavaSolver {
 
 		StringBuffer str = new StringBuffer();
 		str.append("RESULTS: ");
-		for (int i = 0; i < giftVars.length; i++) {
+		for (int i = 0; i < GIFTS.length; i++) {
 			int value = solution.getValue("gift-" + i);
-			//str.append(value + " ");
-			str.append("\n" + PEOPLE[i] + " received " + GIFTS[value] );
+			str.append("\n" + PEOPLE[i] + " => " + GIFTS[value] );
 		}
 		csp.log(str.toString());
 
@@ -129,4 +100,20 @@ public class Christmas extends JavaSolver {
 
 	}
 
+	public int max(int[] array) {
+		int max = array[0];
+		for (int element : array){
+			if (element > max)
+				max = element;
+		}
+		return max;
+	}
+	public int min(int[] array) {
+		int min = array[0];
+		for (int element : array){
+			if (element < min)
+				min = element;
+		}
+		return min;
+	}
 }
