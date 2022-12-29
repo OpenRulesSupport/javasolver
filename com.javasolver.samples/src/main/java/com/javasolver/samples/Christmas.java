@@ -1,11 +1,7 @@
 package com.javasolver.samples;
 
-import java.util.Arrays;
-import java.util.Collections;
-
-import javax.constraints.*;
-
-import org.apache.logging.log4j.core.impl.ThreadContextDataInjector.ForCopyOnWriteThreadContextMap;
+import javax.constraints.Solution;
+import javax.constraints.Var;
 
 import com.javasolver.JavaSolver;
 
@@ -109,15 +105,15 @@ public class Christmas extends JavaSolver {
 		solution.log();
 
 		StringBuffer str = new StringBuffer();
-		str.append("giftVars: ");
+		str.append("RESULTS: ");
 		for (int i = 0; i < giftVars.length; i++) {
 			int value = solution.getValue("gift-" + i);
-			str.append(value + " ");
-			csp.log(PEOPLE[i] + " received " + GIFTS[value] );
+			//str.append(value + " ");
+			str.append("\n" + PEOPLE[i] + " received " + GIFTS[value] );
 		}
 		csp.log(str.toString());
 
-		csp.log("TotalHappiness: " + solution.getValue("Total Happiness"));
+		csp.log("Total Happiness: " + solution.getValue("Total Happiness"));
 	}
 
 	public static void main(String[] args) {
