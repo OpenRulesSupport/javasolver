@@ -7,9 +7,9 @@ import com.javasolver.JavaSolver;
 
 /*
 https://dmcommunity.org/challenge-jan-2023/
-This model defines a set of people, a set of giftVars, and the HAPPINESS level and cost of each gift.
+This model defines a set of people, a set of gifts, and the HAPPINESS level and cost of each gift.
 The objective is to maximize the total HAPPINESS, subject to the BUDGET constraint 
-that the total cost of the giftVars must be less than or equal to the BUDGET, 
+that the total cost of the gifts must be less than or equal to the BUDGET, 
 and the constraint that each person can only receive one gift.
 
 Here is a sample of test data:
@@ -26,7 +26,7 @@ HAPPINESS:
 BUDGET: 50
  */
 
-public class Christmas extends JavaSolver {
+public class ChristmasModel extends JavaSolver {
 	// Data
 	String[] PEOPLE = { "Alice", "Bob", "Carol", "Dave", "Eve" };
 	String[] GIFTS = { "Book", "Toy", "Chocolate", "Wine", "Flowers" };
@@ -42,37 +42,29 @@ public class Christmas extends JavaSolver {
 
 	public void define() {
 		try {
-			Var[] giftVars = csp.variableArray("gift",0, GIFTS.length-1, PEOPLE.length);
-			Var[] costVars = csp.variableArray("cost",min(COSTS), max(COSTS), GIFTS.length);
-
+			Var[] gifts = csp.variableArray("gift",0, GIFTS.length-1, PEOPLE.length);
+			Var[] costs = csp.variableArray("cost",min(COSTS), max(COSTS), GIFTS.length);
 			// Define COST and HAPPINESS constraints
-			Var[] happinessVars = new Var[PEOPLE.length];
+			Var[] happiness = new Var[PEOPLE.length];
 			for (int i = 0; i < PEOPLE.length; i++) {
-				csp.postElement(COSTS, giftVars[i], "=", costVars[i]);
-				happinessVars[i] = csp.variable("happiness-"+i,min(HAPPINESS[i]),max(HAPPINESS[i]));
-				csp.postElement(HAPPINESS[i], giftVars[i], "=", happinessVars[i]);
+				csp.postElement(COSTS, gifts[i], "=", costs[i]);
+				happiness[i] = csp.variable("happiness-"+i,min(HAPPINESS[i]),max(HAPPINESS[i]));
+				csp.postElement(HAPPINESS[i], gifts[i], "=", happiness[i]);
 			}
-			
 			// BUDGET constraint
-			Var totalCost = csp.sum(costVars);
-			totalCost.setName("Total Cost");
-			csp.add(totalCost);
+			Var totalCost = csp.sum("Total Cost",costs);
 			csp.post(totalCost, "<=", BUDGET);
 			csp.log(totalCost.toString());
-			
 			// Define objective
-			Var totalHappinessVar = csp.sum(happinessVars);
-			totalHappinessVar.setName("Total Happiness");
-			csp.add(totalHappinessVar);
-			setObjective(totalHappinessVar);
-			csp.log(totalHappinessVar.toString());
+			Var totalHappiness = csp.sum("Total Happiness",happiness);
+			setObjective(totalHappiness);
+			csp.log(totalHappiness.toString());
 		} catch (Exception e) {
 			throw new RuntimeException("Problem is overconstrained");
 		}
 	}
 
 	public void saveSolution(Solution solution) {
-		solution.log();
 		System.out.println("==== RESULTS ====");
 		for (int i = 0; i < GIFTS.length; i++) {
 			int value = solution.getValue("gift-" + i);

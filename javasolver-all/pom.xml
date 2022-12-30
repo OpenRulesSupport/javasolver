@@ -28,7 +28,7 @@
 		<maven.compiler.source>1.8</maven.compiler.source>
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<log4j.version>2.16.0</log4j.version>
+		<log4j.version>2.17.2</log4j.version>
 		<jsr331.version>2.2.0</jsr331.version>
 	</properties>
 
@@ -66,7 +66,7 @@
 		<profile>
 			<id>Constrainer</id>
 			<activation>
-			<activeByDefault>true</activeByDefault>
+				<activeByDefault>true</activeByDefault>
 				<property>
 					<name>solver</name>
 					<value>Constrainer</value>

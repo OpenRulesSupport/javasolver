@@ -1,4 +1,4 @@
-set CLASS_NAME=com.javasolver.samples.ChristmasModel
+set CLASS_NAME=com.javasolver.samples.ChristmasModelOO
 @echo off
 rem ====== CONSTRAINT SOLVERS ======
 rem set SOLVER=Sugar
