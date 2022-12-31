@@ -1,7 +1,6 @@
 package com.javasolver.samples;
 
 import java.util.Arrays;
-import java.util.List;
 
 import javax.constraints.Solution;
 import javax.constraints.Var;
@@ -35,21 +34,21 @@ public class ChristmasModelOO extends JavaSolver {
 	String[] GIFTS = { "Book", "Toy", "Chocolate", "Wine", "Flowers" };
 	int[] COSTS = { 10, 20, 5, 15, 7 };
 	int BUDGET = 50;
-	int[][] HAPPINESS = new int[][] { 
-		{ 3, 2, 5, 1, 4 }, 
-		{ 5, 2, 4, 3, 1 }, 
-		{ 1, 3, 4, 5, 2 }, 
-		{ 2, 5, 3, 4, 1 },
-		{ 4, 3, 1, 2, 5 } 
+	int[][] HAPPINESS = new int[][] { // of people getting gifts
+		{ 3, 5, 1, 2, 4 },
+		{ 2, 2, 3, 5, 3 },
+		{ 5, 4, 4, 3, 1 },
+		{ 1, 3, 5, 4, 2 },
+		{ 4, 1, 2, 1, 5 }
 	};
-	
+
 	int minCost = Arrays.stream(COSTS).min().getAsInt();
 	int maxCost = Arrays.stream(COSTS).max().getAsInt();
-	
+
 	Person[] people;
 	int totalCost = 0;
 	int totalHappiness = 0;
-	
+
 	public void define() {
 		try {
 			people = new Person[PEOPLE.length];
@@ -63,10 +62,10 @@ public class ChristmasModelOO extends JavaSolver {
 				happinessVars[i] = people[i].getHappinessVar();
 			}
 			// BUDGET constraint
-			Var totalCost = csp.sum("TotalCost",costVars);
+			Var totalCost = csp.sum("TotalCost", costVars);
 			csp.post(totalCost, "<=", BUDGET);
 			// Define objective
-			Var totalHappiness = csp.sum("TotalHappiness",happinessVars);
+			Var totalHappiness = csp.sum("TotalHappiness", happinessVars);
 			setObjective(totalHappiness);
 		} catch (Exception e) {
 			throw new RuntimeException("Problem is overconstrained");
@@ -81,7 +80,7 @@ public class ChristmasModelOO extends JavaSolver {
 		totalCost = solution.getValue("TotalCost");
 		totalHappiness = solution.getValue("TotalHappiness");
 	}
-	
+
 	public void printResults() {
 		System.out.println("==== RESULTS ====");
 		for (int i = 0; i < people.length; i++) {
@@ -105,22 +104,22 @@ public class ChristmasModelOO extends JavaSolver {
 		int index;
 		String name;
 		String gift;
-		
+
 		Var giftVar;
 		Var costVar;
 		Var happinessVar;
-		
+
 		public Person(int index) {
 			name = PEOPLE[index];
-			giftVar = csp.variable(GIFTS[index],0, GIFTS.length-1);
+			giftVar = csp.variable(GIFTS[index], 0, GIFTS.length - 1);
 			// Cost constraint
-			costVar = csp.variable("cost-"+index,minCost, maxCost);
+			costVar = csp.variable("cost-" + index, minCost, maxCost);
 			csp.postElement(COSTS, giftVar, "=", costVar);
 			// Happiness constraint
 			int[] happiness = HAPPINESS[index];
 			int happinessMin = Arrays.stream(happiness).min().getAsInt();
 			int happinessMax = Arrays.stream(happiness).max().getAsInt();
-			happinessVar = csp.variable("happiness-"+index,happinessMin,happinessMax);
+			happinessVar = csp.variable("happiness-" + index, happinessMin, happinessMax);
 			csp.postElement(happiness, giftVar, "=", happinessVar);
 		}
 
@@ -135,7 +134,7 @@ public class ChristmasModelOO extends JavaSolver {
 		public Var getCostVar() {
 			return costVar;
 		}
-		
+
 		public void setGift(String gift) {
 			this.gift = gift;
 		}
@@ -144,6 +143,6 @@ public class ChristmasModelOO extends JavaSolver {
 		public String toString() {
 			return "Person [name=" + name + ", gift=" + gift + "]";
 		}
-		
+
 	}
 }

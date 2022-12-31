@@ -32,12 +32,12 @@ public class ChristmasModel extends JavaSolver {
 	String[] GIFTS = { "Book", "Toy", "Chocolate", "Wine", "Flowers" };
 	int[] COSTS = { 10, 20, 5, 15, 7 };
 	int BUDGET = 50;
-	int[][] HAPPINESS = new int[][] { 
-		{ 3, 2, 5, 1, 4 }, 
-		{ 5, 2, 4, 3, 1 }, 
-		{ 1, 3, 4, 5, 2 }, 
-		{ 2, 5, 3, 4, 1 },
-		{ 4, 3, 1, 2, 5 } 
+	int[][] HAPPINESS = new int[][] { // of people getting gifts
+		{ 3, 5, 1, 2, 4 },
+		{ 2, 2, 3, 5, 3 },
+		{ 5, 4, 4, 3, 1 },
+		{ 1, 3, 5, 4, 2 },
+		{ 4, 1, 2, 1, 5 }
 	};
 
 	public void define() {
@@ -66,7 +66,7 @@ public class ChristmasModel extends JavaSolver {
 
 	public void saveSolution(Solution solution) {
 		System.out.println("==== RESULTS ====");
-		for (int i = 0; i < GIFTS.length; i++) {
+		for (int i = 0; i < PEOPLE.length; i++) {
 			int value = solution.getValue("gift-" + i);
 			System.out.println(PEOPLE[i] + " => " + GIFTS[value]);
 		}
