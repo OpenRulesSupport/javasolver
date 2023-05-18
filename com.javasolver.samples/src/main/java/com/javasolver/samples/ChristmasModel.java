@@ -54,11 +54,9 @@ public class ChristmasModel extends JavaSolver {
 			// BUDGET constraint
 			Var totalCost = csp.sum("Total Cost",costs);
 			csp.post(totalCost, "<=", BUDGET);
-			csp.log(totalCost.toString());
 			// Define objective
 			Var totalHappiness = csp.sum("Total Happiness",happiness);
 			setObjective(totalHappiness);
-			csp.log(totalHappiness.toString());
 		} catch (Exception e) {
 			throw new RuntimeException("Problem is overconstrained");
 		}
@@ -70,12 +68,13 @@ public class ChristmasModel extends JavaSolver {
 			int value = solution.getValue("gift-" + i);
 			System.out.println(PEOPLE[i] + " => " + GIFTS[value]);
 		}
+		System.out.println("Total Cost: " + solution.getValue("Total Cost"));
 		System.out.println("Total Happiness: " + solution.getValue("Total Happiness"));
 	}
 
 	public static void main(String[] args) {
 		long start = System.currentTimeMillis();
-		Christmas model = new Christmas();
+		ChristmasModel model = new ChristmasModel();
 		model.define();
 		model.maximize();
 		long finish = System.currentTimeMillis();
