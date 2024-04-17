@@ -4,13 +4,13 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.javasolver</groupId>
 	<artifactId>javasolver-all</artifactId>
-	<version>2.2.0</version>
+	<version>2.3.0</version>
 
 	<name>javasolver-all</name>
 	<description>includes all possible Java Solver dependencies</description>
 	<url>http://javasolver.com</url>
 
-	<licenses>
+	<licenses> 
 		<license>
 			<name>GNU Lesser General Public License (LGPL)</name>
 			<url>https://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html</url>
@@ -29,13 +29,18 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<log4j.version>2.22.1</log4j.version>
-		<jsr331.version>2.2.0</jsr331.version>
+		<jsr331.version>2.3.0</jsr331.version>
 	</properties>
 
 	<dependencies>
 		<dependency>
 			<groupId>com.javasolver</groupId>
 			<artifactId>javasolver</artifactId>
+			<version>${jsr331.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>com.javasolver</groupId>
+			<artifactId>jsr331-scheduler</artifactId>
 			<version>${jsr331.version}</version>
 		</dependency>
 		<dependency>
