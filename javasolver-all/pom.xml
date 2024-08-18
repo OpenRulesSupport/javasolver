@@ -4,7 +4,7 @@
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>com.javasolver</groupId>
 	<artifactId>javasolver-all</artifactId>
-	<version>2.3.0</version>
+	<version>2.3.1</version>
 
 	<name>javasolver-all</name>
 	<description>includes all possible Java Solver dependencies</description>
@@ -29,7 +29,7 @@
 		<maven.compiler.target>1.8</maven.compiler.target>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<log4j.version>2.22.1</log4j.version>
-		<jsr331.version>2.3.0</jsr331.version>
+		<jsr331.version>2.3.1</jsr331.version>
 	</properties>
 
 	<dependencies>
