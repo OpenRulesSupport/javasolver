@@ -5,6 +5,7 @@
 	<groupId>com.javasolver</groupId>
 	<artifactId>javasolver-all</artifactId>
 	<version>2.3.1</version>
+	<packaging>pom</packaging>
 
 	<name>javasolver-all</name>
 	<description>includes all possible Java Solver dependencies</description>
