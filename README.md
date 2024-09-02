@@ -1,4 +1,4 @@
-# Java Solver 2.3.0 &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; www.javasolver.com    
+# Java Solver 2.3.1 &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; www.javasolver.com    
 [![N|Solid](https://javasolvers.files.wordpress.com/2019/05/image.png?w=97)](http://jcp.org/en/jsr/detail?id=331) 
 [Java Solver](http://javasolver.com) is a simple Java API for Modeling and Solving Optimization Problems using off-the-shelf Constraint and Linear Solvers. 
 # Motivation
