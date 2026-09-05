@@ -13,7 +13,7 @@ import javax.constraints.VarReal;
 
 public class JavaSolver {
 	
-	static final String RELEASE = "Java Solver Release 2.3.3 (build of Apr 23, 2025)";
+	static final String RELEASE = "Java Solver Release 2.3.3 (build of Sep 4, 2026)";
 
 	protected Problem csp; // used by all subclasses
 	protected Var objectiveVar;
@@ -160,6 +160,7 @@ public class JavaSolver {
 		else { // try VarReal
 			VarReal objectiveReal = getObjectiveReal();
 			if (objectiveReal != null) {
+				log("Use objective: " + objectiveReal);
 				solution = solver.findOptimalSolution(objectiveType,objectiveReal);
 			}
 			else {
@@ -244,6 +245,10 @@ public class JavaSolver {
 		for(Solution solution : solutions) {
 			saveSolution(solution);
 		}
+	}
+	
+	public static String format(double value) {
+	    return String.format("%.2f", value);
 	}
 
 }

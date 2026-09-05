@@ -25,7 +25,7 @@ import com.javasolver.JavaSolver;
 
 public class Warehouse extends JavaSolver {
 	
-	// Test data
+	// Test food
 	int nbStores = 10;
 	int nbSuppliers = 5;
 	int buildingCost = 30;

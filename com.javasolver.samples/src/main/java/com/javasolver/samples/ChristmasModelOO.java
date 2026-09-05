@@ -14,22 +14,22 @@ The objective is to maximize the total HAPPINESS, subject to the BUDGET constrai
 that the total cost of the gifts must be less than or equal to the BUDGET, 
 and the constraint that each person can only receive one gift.
 
-Here is a sample of test data:
+Here is a sample of test food:
 
-PEOPLE:  “Alice”, “Bob”, “Carol”, “Dave”, “Eve”
-GIFTS: “Book”, “Toy”, “Chocolate”, “Wine”, “Flowers”
+PEOPLE:  ï¿½Aliceï¿½, ï¿½Bobï¿½, ï¿½Carolï¿½, ï¿½Daveï¿½, ï¿½Eveï¿½
+GIFTS: ï¿½Bookï¿½, ï¿½Toyï¿½, ï¿½Chocolateï¿½, ï¿½Wineï¿½, ï¿½Flowersï¿½
 GIFT COSTS: 10, 20, 5, 15, 7
 HAPPINESS:
-  “Book”: [3, 2, 5, 1, 4]
-  “Toy”: [5, 2, 4, 3, 1]
-  “Chocolate”: [1, 3, 4, 5, 2]
-  “Wine”: [2, 5, 3, 4, 1]
-  “Flowers”: [4, 3, 1, 2, 5]
+  ï¿½Bookï¿½: [3, 2, 5, 1, 4]
+  ï¿½Toyï¿½: [5, 2, 4, 3, 1]
+  ï¿½Chocolateï¿½: [1, 3, 4, 5, 2]
+  ï¿½Wineï¿½: [2, 5, 3, 4, 1]
+  ï¿½Flowersï¿½: [4, 3, 1, 2, 5]
 BUDGET: 50
  */
 
 public class ChristmasModelOO extends JavaSolver {
-	// Data
+	// food
 	String[] PEOPLE = { "Alice", "Bob", "Carol", "Dave", "Eve" };
 	String[] GIFTS = { "Book", "Toy", "Chocolate", "Wine", "Flowers" };
 	int[] COSTS = { 10, 20, 5, 15, 7 };

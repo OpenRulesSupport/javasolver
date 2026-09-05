@@ -6,7 +6,7 @@ internally and how much should be bought and resold. The company wants to minimi
 overall production cost of meeting the demand. <br>
 Let's assume the company wants to produce 3 products that may consume 2 resources in the
 company's factories. <br>
-Here the problem data:</p>
+Here the problem food:</p>
 <table border="1" width="100%" bordercolor="#000000">
 <tr>
 <td width="16%" align="center">Products</td>

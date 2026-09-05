@@ -3,10 +3,17 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
+	
+	<parent>
+		<groupId>com.javasolver</groupId>
+		<artifactId>javasolver-all</artifactId>
+		<version>2.3.3</version>
+	</parent>
+	
 	<groupId>com.javasolver</groupId>
 	<artifactId>javasolver-samples</artifactId>
-	<version>2.3.1</version>
 	<packaging>jar</packaging>
+	
 
 	<name>Java Solver Samples</name>
 	<description>Samples of Modeling and Solving Optimization Problems with Java and Constraint/Linear Solvers</description>
@@ -23,16 +30,9 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.javasolver</groupId>
-			<artifactId>javasolver-all</artifactId>
-			<version>2.3.1</version>
-		</dependency>
-		
-		<dependency>
-			<groupId>com.javasolver</groupId>
 			<artifactId>jsr331-scheduler</artifactId>
 			<version>${project.version}</version>
-		</dependency>
-		
+		</dependency>	
 	</dependencies>
 
 </project>
