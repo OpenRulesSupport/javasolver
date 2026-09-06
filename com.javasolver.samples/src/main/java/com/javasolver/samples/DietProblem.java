@@ -25,16 +25,8 @@ class Nutrient {
 		return name;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
 	public double getDailyIntake() {
 		return dailyIntake;
-	}
-
-	public void setMinDailyIntake(double dailyIntake) {
-		this.dailyIntake = dailyIntake;
 	}
 	
 }
@@ -58,33 +50,17 @@ class Nutrient {
 		return commodity;
 	}
 
-	public void setCommodity(String commodity) {
-		this.commodity = commodity;
-	}
-
 	public String getUnits() {
 		return units;
-	}
-
-	public void setUnits(String units) {
-		this.units = units;
 	}
 
 	public double getPrice() {
 		return price;
 	}
 
-	public void setPrice(double price) {
-		this.price = price;
-	}
-
 	public double[] getNutrients() {
 		return nutrients;
 	}
-
-	public void setNutrients(double[] nutrients) {
-		this.nutrients = nutrients;
-	}	
 	
 }
 
@@ -93,7 +69,6 @@ public class DietProblem extends JavaSolver {
 	List<Nutrient> nutrients;
 	List<Food> food;
 	double MAX = java.lang.Double.POSITIVE_INFINITY-1;
-	//double MAX = 10000;
 	
 	public DietProblem(List<Nutrient> nutrients, List<Food> food ) {
 		this.nutrients = nutrients;
@@ -104,23 +79,16 @@ public class DietProblem extends JavaSolver {
 		
 		// problem unknowns
 		VarReal[] foodVars = new VarReal[food.size()];
-		VarReal[] foodPriceVars = new VarReal[food.size()];
 		for(int i = 0; i < food.size(); i++) {
 			Food f = food.get(i);
 			foodVars[i] = csp.variableReal(f.getCommodity(), 0, MAX); 
-			foodPriceVars[i] = csp.variableReal(f.getCommodity()+"Price", 0, MAX); 
-			csp.post(foodPriceVars[i], "=" ,foodVars[i].multiply(f.getPrice()));
 		}
 		
 		// objective 
-		VarReal totalAnnualCost = csp.sum(foodPriceVars);
-		//VarReal totalAnnualCost = csp.sum(foodVars);
+		VarReal totalAnnualCost = csp.sum(foodVars);
 		totalAnnualCost.setName("TotalAnnualCost");
 	    csp.add(totalAnnualCost);
 	    setObjectiveReal(totalAnnualCost);
-	    
-	    System.out.println("" + totalAnnualCost);
-		
 	    
 	    // min daily intake constraints
 	    VarReal[][] consumedNutrients = new VarReal[nutrients.size()][food.size()];
@@ -135,10 +103,7 @@ public class DietProblem extends JavaSolver {
 			csp.post(totalConsumedNutrients, "=", csp.sum(consumedNutrients[i]));
 			System.out.println("post " + totalConsumedNutrients + " >= " + nutrient.getDailyIntake()*365);
 			csp.post(totalConsumedNutrients,">=",nutrient.getDailyIntake()*365);
-			System.out.println(" " +totalConsumedNutrients);
 		}
-		
-		System.out.println("Minimize " + getObjectiveReal());
 
 	}
 	
@@ -150,10 +115,8 @@ public class DietProblem extends JavaSolver {
 			Food f = food.get(i);
 			String commodity = f.getCommodity();
 			double value = solution.getValueReal(commodity);
-			double cost = solution.getValueReal(commodity+"Price");
 			if (value > 0.0) {
-				System.out.println(commodity + " = " + format(value)
-			                       + " items, cost=$" + format(cost));
+				System.out.println(commodity + " = $" + format(value));
 			}
 		}
 		System.out.println("Total Annual Cost = $" + format(solution.getValueReal("TotalAnnualCost")));
