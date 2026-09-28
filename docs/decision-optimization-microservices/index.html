@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Decision Optimization Microservices — Java Solver</title>
+  <meta name="description" content="If you to use Java Solver in conjunction with OpenRules Decision Manager, you may easily deploy your decision optimization model as an Decision Optimization M">
+  <link rel="canonical" href="https://javasolver.com/decision-optimization-microservices/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu"><span aria-hidden="true">☰</span><span>Menu</span></button>
+  <div class="layout">
+    <aside class="sidebar" id="site-menu">
+    <a class="brand" href="/" aria-label="Java Solver home">
+      <span class="brand-mark" aria-hidden="true">JS</span>
+      <span><strong>Java Solver</strong><small>Decision optimization in Java</small></span>
+    </a>
+    <nav class="site-nav" aria-label="Main navigation"><a  href="/">Home</a><a  href="/download/">Download</a><a  href="/introductory-example/">Introductory Example</a><a  href="/defining-optimization-problem/">Define a Problem</a><a  href="/solving-optimization-problem/">Solve a Problem</a><a  href="/learn-by-examples/">Examples</a><div class="subnav"><a  href="/learn-by-examples/sendmoremoney/">SEND+MORE=MONEY</a><a  href="/learn-by-examples/simple-arithmetic-problem/">Simple Arithmetic Problem</a><a  href="/learn-by-examples/map-coloring/">Map Coloring</a><a  href="/learn-by-examples/map-coloring-with-violations/">Map Coloring with&nbsp;Violations</a></div><a  href="/scheduling-and-resource-allocation/">Scheduling</a><a  href="/switching-solvers/">Switching Solvers</a><a  href="/brcp-lp/">Business Rules + Optimization</a><a class="active" aria-current="page" href="/decision-optimization-microservices/">Microservices</a><a  href="/support/">Support</a></nav>
+    <div class="sidebar-links"><a href="https://github.com/OpenRulesSupport/javasolver">GitHub</a><a href="https://mvnrepository.com/artifact/com.javasolver/javasolver">Maven Central</a></div>
+  </aside>
+    <main id="content" class="main">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Decision Optimization Microservices</span></nav>
+      <header class="page-header ">
+        <p class="eyebrow">Java Solver documentation</p>
+        <h1>Decision Optimization Microservices</h1>
+        
+        
+      </header>
+      <article class="prose"><p class="wp-block-paragraph">If you to  use Java Solver in conjunction with <a href="https://openrulesdecisionmanager.com/" target="_blank" rel="noopener">OpenRules Decision Manager</a>,  you may easily deploy your decision optimization model as an Decision Optimization Microservice, namely an AWS Lambda function. Usually this process  requires some programming efforts and complex configuration. OpenRules essentially simplifies this process.</p>
+<p>Traditionally to deploy a Java-based program as a AWS Lambda function you need  to go through serious configuration efforts. For instance, you may follow a path similar to the one described <a href="http://openrules.com/pdf/CreatingOpenRulesDecisionMicroservices.pdf" target="_blank" rel="noopener">here</a>:</p>
+<ul>
+<li>
+<ol>
+<li>Put them into SpringBoot Environment</li>
+<li>Add several Java classes required by Spring for the service configuration</li>
+<li>Configure the service using AWS Lambda and AWS Gateway.</li>
+</ol>
+</li>
+</ul>
+<p>With OpenRules Decision Manager you can deploy your optimization models as AWS Lambdas with ONE CLICK and no additional programming! The basic idea is very simple:</p>
+<ul>
+<li>
+<ol>
+<li>As usual, describe your Business Problem and its test cases using regular business rules in Excel in the OpenRules format</li>
+<li>Write a Java class called Optimization Problem (inherited from JavaSolver) to define your optimization problem</li>
+<li><em>Create an Excel-based table &#8220;SolveOptimizationProblem&#8221; of the OpenRules type &#8220;Method&#8221;</em></li>
+<li>Use the standard OpenRules &#8220;deployLambda.bat&#8221; to deploy the integrated model as AWS Lambda microservice.</li>
+</ol>
+</li>
+</ul>
+<p>The 3rd step is the most interesting one. It allows us to treat a Java-based Optimization Problem as a part of the rules-based decision model, and thus utilize the standard OpenRules deployment mechanism! Similarly you can deploy optimization models using RESTfull web services or Docker containers. While JavaSolver allows you to choose different off-the-shelf constraint or linear solvers, there is nothing that prevent us of integrating OpenRules directly with other Java-based solvers.</p>
+<p>The following example explains how to deploy the decision model &#8220;<a href="https://dmcommunity.files.wordpress.com/2018/12/OpenRules-Solutions-for-Vacation-Days-Advanced.pdf" target="_blank" rel="noopener">Advanced Vacation Days</a>&#8221; with a Java Solver optimization component as an AWS Lambda. This problem was offered as the DMCommunity <a href="https://dmcommunity.org/challenge/challenge-nov-2018/" target="_blank" rel="noopener">Nov-2018 Challenge</a> :</p>
+<hr />
+<p><em>Every employee receives vacation days according to the following rules:</em></p>
+<ul>
+<li>
+<ul>
+<li>
+<ol>
+<li><em>Every employee receives at least 22 vacation days.</em></li>
+<li><em>Employees younger than 18 or at least 60 years, or employees with at least 30 years of service can receive extra 5 days.</em></li>
+<li><em>Employees with at least 30 years of service and also employees of age 60 or more, can receive extra 3 days, on top of possible additional days already given</em></li>
+<li><em>If an employee has at least 15 but less than 30 years of service, extra 2 days can be given. These 2 days can also be provided for employees of age 45 or more.</em></li>
+<li><em>A college student is eligible to 1 extra vacation day.</em></li>
+<li><em>If an employee is a veteran, 2 extra days can be given.</em></li>
+<li><em>The total number of vacation days cannot exceed 29.</em></li>
+</ol>
+</li>
+</ul>
+</li>
+</ul>
+<p>The objective: give an employee as many vacation days as s/he is eligible to while satisfying all 7 rules. The rule 7 explicitly specifies the maximum of 29 vacation days that cannot be exceeded.</p>
+<hr />
+<p>This decision model consists of two parts:</p>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li>A pure business part that specifies employee eligibility to all types of vacation days</li>
+<li>A more technical optimization part that deals with the Rule 7 and search of an optimal solution.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Business Data. </strong>Let&#8217;s start with the test data. We will need an information about the company that should include:</p>
+<ul>
+<li>
+<ul>
+<li>
+<ul>
+<li>Vacation Benefit Types</li>
+<li>Vacation Benefit Days (for each type)</li>
+<li>Max Vacation days (29)</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p>Here is the proper Data table in Excel:</p>
+<p><a href="https://openrules.files.wordpress.com/2020/04/datacompany.png"><img loading="lazy" class="size-full wp-image-3061 alignnone" src="/assets/media/2020-04/datacompany.png" alt="" width="418" height="200" /></a></p>
+<p>We also may define the corresponding Java class Company:</p>
+<p><a href="https://openrules.files.wordpress.com/2020/04/vacdaysopt.company.png"><img loading="lazy" class="size-full wp-image-3063 alignnone" src="/assets/media/2020-04/vacdaysopt.company.png" alt="" width="275" height="96" /></a></p>
+<p>The following table describes test-employees:</p>
+<p><a href="https://openrules.files.wordpress.com/2020/04/vacdaysopt.employee.png"><img loading="lazy" class="size-full wp-image-3065 alignnone" src="/assets/media/2020-04/vacdaysopt.employee.png" alt="" width="418" height="273" /></a></p>
+<p>And here is the corresponding Java class:</p>
+<p><a href="https://openrules.files.wordpress.com/2020/04/vacdaysopt.employeejava.png"><img loading="lazy" class="size-full wp-image-3067 alignnone" src="/assets/media/2020-04/vacdaysopt.employeejava.png" alt="" width="282" height="160" /></a></p>
+<p>Each employee  contains an array of eligibilities of this type:</p>
+<p><a href="https://openrules.files.wordpress.com/2020/04/vacdaysopt.eligibility.png"><img loading="lazy" class="size-full wp-image-3069 alignnone" src="/assets/media/2020-04/vacdaysopt.eligibility.png" alt="" width="208" height="78" /></a></p>
+<p><strong>Business Part. </strong>The following decision table defines eligibility of one employee to different vacation benefits:</p>
+<p><a href="https://openrules.files.wordpress.com/2020/04/vacdaysopt.defineeligibility.png"><img loading="lazy" class="size-full wp-image-3070 alignnone" src="/assets/media/2020-04/vacdaysopt.defineeligibility.png" alt="" width="423" height="269" /></a></p>
+<p>To execute this table for all types of vacation benefits, we will use the following table:</p>
+<p><a href="https://openrules.files.wordpress.com/2020/04/vacdaysopt.defineeligibilities.png"><img loading="lazy" class="size-full wp-image-3072 alignnone" src="/assets/media/2020-04/vacdaysopt.defineeligibilities.png" alt="" width="379" height="73" /></a></p>
+<p><strong>Optimization Part. </strong>We will use Java Solver to represent optimization logic in the Java class &#8220;OptimizationProblem&#8221;:</p>
+<p><a href="https://openrules.files.wordpress.com/2020/04/vacdaysopt.optimizationproblem.png"><img loading="lazy" class="wp-image-3074 size-full alignnone" src="/assets/media/2020-04/vacdaysopt.optimizationproblem.png" alt="" width="593" height="487" /></a></p>
+<p>To invoke this problem from Excel we define the following method:</p>
+<p><a href="https://openrules.files.wordpress.com/2020/04/vacdaysopt.solveoptimizationproblem.png"><img loading="lazy" class="size-full wp-image-3076 alignnone" src="/assets/media/2020-04/vacdaysopt.solveoptimizationproblem.png" alt="" width="376" height="91" /></a></p>
+<p>And finally our decision model may use the following table to execute both business and optimization parts:</p>
+<p><a href="https://openrules.files.wordpress.com/2020/04/vacdaysopt.calculatevacationdays.png"><img loading="lazy" class="size-full wp-image-3078 alignnone" src="/assets/media/2020-04/vacdaysopt.calculatevacationdays.png" alt="" width="452" height="93" /></a></p>
+<p>To test and deploy this integrated decision model we need to specify the file &#8220;project.properties&#8221;:</p>
+<p><a href="https://openrules.files.wordpress.com/2020/04/vacdaysopt.properties.png"><img loading="lazy" class="alignnone wp-image-3080 size-full" src="/assets/media/2020-04/vacdaysopt.properties.png" alt="" width="352" height="198" /></a></p>
+<p>As you can see, it includes AWS Lambda deployment properties. So, it&#8217;s enough to double-click to the standard OpenRules file &#8220;deployLambda.bat&#8221; and it will generate all necessary Java files and will deploy this integrated Rule+Optimization decision model as AWS Lambda microservice:</p>
+<p><a href="https://openrules.files.wordpress.com/2020/04/vacdaysopt.deploylambda.png"><img loading="lazy" class="size-full wp-image-3081 alignnone" src="/assets/media/2020-04/vacdaysopt.deploylambda.png" alt="" width="593" height="199" /></a></p>
+<p>If we run the generated &#8220;testLambda.bat&#8221; it will execute all out tests with an average execution time (including optimization!) withing 100 milliseconds!</p></article>
+      
+      <footer class="page-footer"><span>Last updated April 13, 2020</span><a href="https://github.com/OpenRulesSupport/javasolver">View Java Solver on GitHub</a></footer>
+    </main>
+  </div>
+  <script src="/assets/site.js"></script>
+</body>
+</html>

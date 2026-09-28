@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Business Rules + Optimization — Java Solver</title>
+  <meta name="description" content="There are two major types of decision engines utilized by different Business Rules and Decision Management systems to execute business decision models: Tradit">
+  <link rel="canonical" href="https://javasolver.com/brcp-lp/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu"><span aria-hidden="true">☰</span><span>Menu</span></button>
+  <div class="layout">
+    <aside class="sidebar" id="site-menu">
+    <a class="brand" href="/" aria-label="Java Solver home">
+      <span class="brand-mark" aria-hidden="true">JS</span>
+      <span><strong>Java Solver</strong><small>Decision optimization in Java</small></span>
+    </a>
+    <nav class="site-nav" aria-label="Main navigation"><a  href="/">Home</a><a  href="/download/">Download</a><a  href="/introductory-example/">Introductory Example</a><a  href="/defining-optimization-problem/">Define a Problem</a><a  href="/solving-optimization-problem/">Solve a Problem</a><a  href="/learn-by-examples/">Examples</a><div class="subnav"><a  href="/learn-by-examples/sendmoremoney/">SEND+MORE=MONEY</a><a  href="/learn-by-examples/simple-arithmetic-problem/">Simple Arithmetic Problem</a><a  href="/learn-by-examples/map-coloring/">Map Coloring</a><a  href="/learn-by-examples/map-coloring-with-violations/">Map Coloring with&nbsp;Violations</a></div><a  href="/scheduling-and-resource-allocation/">Scheduling</a><a  href="/switching-solvers/">Switching Solvers</a><a class="active" aria-current="page" href="/brcp-lp/">Business Rules + Optimization</a><a  href="/decision-optimization-microservices/">Microservices</a><a  href="/support/">Support</a></nav>
+    <div class="sidebar-links"><a href="https://github.com/OpenRulesSupport/javasolver">GitHub</a><a href="https://mvnrepository.com/artifact/com.javasolver/javasolver">Maven Central</a></div>
+  </aside>
+    <main id="content" class="main">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Business Rules +&nbsp;Optimization</span></nav>
+      <header class="page-header ">
+        <p class="eyebrow">Java Solver documentation</p>
+        <h1>Business Rules +&nbsp;Optimization</h1>
+        
+        
+      </header>
+      <article class="prose"><p class="wp-block-paragraph">There are two major types of decision engines utilized by different Business Rules and Decision Management systems to execute business decision models:</p>
+
+
+
+<ul>
+<li>
+<ol>
+<li><strong>Traditional rule engines</strong> (RETE-based or Sequential).</li>
+<li><strong>Constraint-based rule engines</strong></li>
+</ol>
+</li>
+</ul>
+<p class="wp-block-paragraph">The systems built on top of the traditional rule engines, usually expect human modelers to write rules for ALL possible combinations of decision variables to find ONE possible decision. In particular, this is true for decision models which follow the Decision Model and Notation (<a href="http://www.omg.org/spec/DMN" target="_blank" rel="noopener">DMN</a>) standard.</p>
+
+
+
+<p class="wp-block-paragraph">Constraint-based rule engines were introduced in 2011 based on the article “<a href="http://openrules.com/pdf/RuleML2011.JacobFeldman.pdf" target="_blank" rel="noreferrer noopener">Representing and Solving Rule-Based Decision Models with Constraint Solvers</a>“. In particular, the main premises of this paper were implemented in <a href="http://openrules.com/rulesolver.htm" target="_blank" rel="noreferrer noopener">OpenRules Solver</a> that takes a rules-based decision model and transforms it into a constraint satisfaction problem that can be solved with an off-the-shelf constraint solver. This approach doesn’t force a human modeler to describe all possible situations and is capable to automatically find multiple feasible decisions and even the optimal one.</p>
+
+
+
+<p class="wp-block-paragraph">However, real-world experience shows that it could be very difficult (or even impossible) to represent all decision modeling constructs using only constraint programming facilities. Thus, both above approaches have their serious limitations. Different researchers tried to merge both approaches but so far it worked only for relatively simple decision models. It bring us to </p>
+
+
+
+<p class="wp-block-paragraph">3. <strong>Integrated use of Rule Engines and CP/LP Solvers</strong></p>
+
+
+
+<p class="wp-block-paragraph">We may split our decision model into several sub-models:</p>
+
+
+
+<ul class="wp-block-list">
+<li>
+<ul>
+<li><strong>Business decision models</strong> which can be represented and executed using rule engines</li>
+<li><strong>Optimization decision models</strong> which can be represented and executed using constraint or linear solvers.</li>
+</ul>
+</li>
+</ul>
+<p>This paper “<a href="https://www.researchgate.net/publication/336617478_Business_Decision_Modeling_with_Rule_Engines_and_CPLP_Solvers" target="_blank" rel="noreferrer noopener">Business Decision Modeling with Rule Engines and CP/LP Solvers</a>” describes this approach utilizing open source products:</p>
+
+
+
+<ul class="wp-block-list">
+<li>
+<ul>
+<li><a href="https://openrulesdecisionmanager.com/" target="_blank" rel="noreferrer noopener">OpenRules</a> – for business decision models</li>
+<li><a href="/" target="_blank" rel="noreferrer noopener">Java Solver</a> with various off-the-shelf Constraint and Linear solvers – for optimization models.</li>
+</ul>
+</li>
+</ul>
+<p>To demonstrate the integrated approach the paper uses a very simple example and also refers to more complex already published decision models.  <a href="https://www.researchgate.net/publication/336617478_Business_Decision_Modeling_with_Rule_Engines_and_CPLP_Solvers" target="_blank" rel="noreferrer noopener">Link</a> </p></article>
+      
+      <footer class="page-footer"><span>Last updated April 13, 2020</span><a href="https://github.com/OpenRulesSupport/javasolver">View Java Solver on GitHub</a></footer>
+    </main>
+  </div>
+  <script src="/assets/site.js"></script>
+</body>
+</html>

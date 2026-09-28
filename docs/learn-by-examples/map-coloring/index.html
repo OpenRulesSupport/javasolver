@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Map Coloring — Java Solver</title>
+  <meta name="description" content="You need to use no more than 4 colors (blue, red, green, or yellow) to color six European countries: Belgium, Denmark, France, Germany, Luxembourg, and the Ne">
+  <link rel="canonical" href="https://javasolver.com/learn-by-examples/map-coloring/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu"><span aria-hidden="true">☰</span><span>Menu</span></button>
+  <div class="layout">
+    <aside class="sidebar" id="site-menu">
+    <a class="brand" href="/" aria-label="Java Solver home">
+      <span class="brand-mark" aria-hidden="true">JS</span>
+      <span><strong>Java Solver</strong><small>Decision optimization in Java</small></span>
+    </a>
+    <nav class="site-nav" aria-label="Main navigation"><a  href="/">Home</a><a  href="/download/">Download</a><a  href="/introductory-example/">Introductory Example</a><a  href="/defining-optimization-problem/">Define a Problem</a><a  href="/solving-optimization-problem/">Solve a Problem</a><a class="active" aria-current="page" href="/learn-by-examples/">Examples</a><div class="subnav"><a  href="/learn-by-examples/sendmoremoney/">SEND+MORE=MONEY</a><a  href="/learn-by-examples/simple-arithmetic-problem/">Simple Arithmetic Problem</a><a class="active" aria-current="page" href="/learn-by-examples/map-coloring/">Map Coloring</a><a  href="/learn-by-examples/map-coloring-with-violations/">Map Coloring with&nbsp;Violations</a></div><a  href="/scheduling-and-resource-allocation/">Scheduling</a><a  href="/switching-solvers/">Switching Solvers</a><a  href="/brcp-lp/">Business Rules + Optimization</a><a  href="/decision-optimization-microservices/">Microservices</a><a  href="/support/">Support</a></nav>
+    <div class="sidebar-links"><a href="https://github.com/OpenRulesSupport/javasolver">GitHub</a><a href="https://mvnrepository.com/artifact/com.javasolver/javasolver">Maven Central</a></div>
+  </aside>
+    <main id="content" class="main">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/learn-by-examples/">Learn By Examples</a><span aria-hidden="true">/</span><span aria-current="page">Map Coloring</span></nav>
+      <header class="page-header ">
+        <p class="eyebrow">Java Solver documentation</p>
+        <h1>Map Coloring</h1>
+        
+        
+      </header>
+      <article class="prose"><figure class="wp-block-image alignright is-resized"><img src="/assets/media/2019-05/mapcoloring.png" alt="" class="wp-image-222" /></figure>
+
+
+
+<p class="wp-block-paragraph">You need to use no more than 4 colors (blue, red, green, or yellow) to color six European countries: Belgium, Denmark, France, Germany, Luxembourg, and the Netherlands. These is one condition: neighboring countries cannot use the same color. <a href="https://dmcommunity.org/challenge/challenge-may-2019/" target="_blank" rel="noopener">Source</a></p>
+
+
+
+<p class="wp-block-paragraph">To define and solve this problem we created Java class MapColoring that extends JavaSolver:</p>
+
+
+
+<figure class="wp-block-image"><img src="/assets/media/2019-05/mapcoloring-1.png" alt="" class="wp-image-223" /></figure>
+
+
+
+<p class="wp-block-paragraph"></p>
+
+
+
+<p class="wp-block-paragraph">The method <em>define()</em> creates constrained integer variables for each country with possible values from 0 to (number of colors &#8211; 1). Then we posted constraints <em>csp.post(country1, &#8220;!=&#8221;, country2)</em>&nbsp;for all neighboring countries.&nbsp; To solve the problem we called the standard JavaSolver&#8217;s method <em>solve()</em>. We added an optional method <em>saveSolution(Solution solution)</em> to print a found solution in a nicer way:</p>
+
+
+
+<figure class="wp-block-image"><img src="/assets/media/2019-05/mapcoloringresults.png" alt="" class="wp-image-226" /></figure>
+
+
+
+<p class="wp-block-paragraph"></p>
+
+
+
+<p class="wp-block-paragraph">If you replace <em>solve()</em> to <em>solveAll()</em>, Java Solver will generate 144 different solutions.</p>
+
+
+
+<p class="wp-block-paragraph"></p></article>
+      
+      <footer class="page-footer"><span>Last updated February 26, 2025</span><a href="https://github.com/OpenRulesSupport/javasolver">View Java Solver on GitHub</a></footer>
+    </main>
+  </div>
+  <script src="/assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Introductory Example — Java Solver</title>
+  <meta name="description" content="This is a very simple optimization problem originally described here: 300 kids need to travel to the London zoo. The school may rent 40 seats and 30 seats bus">
+  <link rel="canonical" href="https://javasolver.com/introductory-example/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu"><span aria-hidden="true">☰</span><span>Menu</span></button>
+  <div class="layout">
+    <aside class="sidebar" id="site-menu">
+    <a class="brand" href="/" aria-label="Java Solver home">
+      <span class="brand-mark" aria-hidden="true">JS</span>
+      <span><strong>Java Solver</strong><small>Decision optimization in Java</small></span>
+    </a>
+    <nav class="site-nav" aria-label="Main navigation"><a  href="/">Home</a><a  href="/download/">Download</a><a class="active" aria-current="page" href="/introductory-example/">Introductory Example</a><a  href="/defining-optimization-problem/">Define a Problem</a><a  href="/solving-optimization-problem/">Solve a Problem</a><a  href="/learn-by-examples/">Examples</a><div class="subnav"><a  href="/learn-by-examples/sendmoremoney/">SEND+MORE=MONEY</a><a  href="/learn-by-examples/simple-arithmetic-problem/">Simple Arithmetic Problem</a><a  href="/learn-by-examples/map-coloring/">Map Coloring</a><a  href="/learn-by-examples/map-coloring-with-violations/">Map Coloring with&nbsp;Violations</a></div><a  href="/scheduling-and-resource-allocation/">Scheduling</a><a  href="/switching-solvers/">Switching Solvers</a><a  href="/brcp-lp/">Business Rules + Optimization</a><a  href="/decision-optimization-microservices/">Microservices</a><a  href="/support/">Support</a></nav>
+    <div class="sidebar-links"><a href="https://github.com/OpenRulesSupport/javasolver">GitHub</a><a href="https://mvnrepository.com/artifact/com.javasolver/javasolver">Maven Central</a></div>
+  </aside>
+    <main id="content" class="main">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Introductory Example</span></nav>
+      <header class="page-header ">
+        <p class="eyebrow">Java Solver documentation</p>
+        <h1>Introductory Example</h1>
+        
+        
+      </header>
+      <article class="prose"><p>This is a very simple optimization problem originally described <a href="https://www.linkedin.com/pulse/what-optimization-how-can-help-you-do-more-less-zoo-buses-fleischer/" target="_blank" rel="noopener">here</a>:</p>
+<blockquote><p><em>300 kids need to travel to the London zoo. The school may rent 40 seats and 30 seats buses for 500£ and 400£. How many buses of each type should they rent to minimize the total cost?</em></p></blockquote>
+<p>The class ProblemZoo shows how to define and solve this problem with Java Solver:</p>
+<p><img loading="lazy" class="alignnone wp-image-104 size-full" src="/assets/media/2019-05/zoo.code_-1.jpg" alt="" width="756" height="422" /></p>
+<p>This class is inherited from JavaSolver. The method “<em>define()</em>” uses embedded object <em><span><strong>csp</strong></span></em> that represents an instance of a constraint satisfaction problem (CSP) specified by the <a href="http://jsr331.org/">JSR-331</a> standard “Constraint Programming API”. First, it creates 2 integer constraint variables <em>numberOf30Buses</em> and <em>numberOf40Buses</em> defined from 0 to 30 (because we don’t need more than 30 buses of any type to sit 300 kids).  Here we used the csp’s method <em>variable(name,min,max)</em> that creates one constrained integer variable of the type Var.</p>
+<p>The array <em>seats</em> contains numbers of seats in each bus type. Then we placed both variables in the array <em>vars</em>. It allowed us to specify another variable <em>totalNumberOfSeats</em> of the type Var as a scalar product of the arrays <em>seats</em> and <em>vars</em>. Then we stated that the total number of seats in all buses should be at least 300 by posting this constraint:  <em><span>csp</span>.post(totalNumberOfSeats</em>, &#8221; <span>&gt;=</span>&#8220;,  <em>300)</em></p>
+<p>The array <em>costs</em> contains costs for each bus type. Next 2 lines specify the optimization objective <em>totalCost</em> that is a scalar product of the arrays <em>costs</em> and <em>vars</em>.</p>
+<p>That’s it – our optimization problem is defined. The method main creates an instance of the class ProblemZoo and calls its <em>define()</em> and <em>minimize()</em> methods. The latest method will minimize the specified optimization objective <em>totalCost</em>. Here are the execution results:</p>
+<p><img loading="lazy" class="size-full wp-image-105 alignnone" src="/assets/media/2019-05/zoo.resultsconstrainer.jpg" alt="" width="660" height="193" /></p>
+<p>As you can see, by default Java Solver used an open source constraint solver “Constrainer”. We can switch to a linear solver, e.g. to another open source solver “SCIP”. To do that we just need to change the selected SOLVER in the batch file “runZoo.bat”:</p>
+<p><img loading="lazy" class="size-full wp-image-106 alignnone" src="/assets/media/2019-05/zoo.run_.jpg" alt="" width="441" height="121" /></p>
+<p>As you can see, we commented out CONSTRAINER, and set SOLVER=SCIP. Here are the new execution results:</p>
+<p><img loading="lazy" class="size-full wp-image-107 alignnone" src="/assets/media/2019-05/zoo.resultsscip.jpg" alt="" width="660" height="246" /></p>
+<p>There are many other CP and LP solvers (open source and commercial) which can be utilized by Java Solver.  Constraint solvers can represent almost any problem while linear solvers are limited to linear constraints. Linear solvers usually can find optimal solutions for problems of very large size when constraint solvers stop short. So, sometimes you can split your problem in several sub-problems and solve them using different solvers.</p></article>
+      
+      <footer class="page-footer"><span>Last updated April 17, 2020</span><a href="https://github.com/OpenRulesSupport/javasolver">View Java Solver on GitHub</a></footer>
+    </main>
+  </div>
+  <script src="/assets/site.js"></script>
+</body>
+</html>

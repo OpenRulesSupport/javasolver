@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Motivation — Java Solver</title>
+  <meta name="description" content="As a Java developer, you develop software that provides solutions for your business problems. When a problem has an optimization objective, your program shoul">
+  <link rel="canonical" href="https://javasolver.com/java-solver/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu"><span aria-hidden="true">☰</span><span>Menu</span></button>
+  <div class="layout">
+    <aside class="sidebar" id="site-menu">
+    <a class="brand" href="/" aria-label="Java Solver home">
+      <span class="brand-mark" aria-hidden="true">JS</span>
+      <span><strong>Java Solver</strong><small>Decision optimization in Java</small></span>
+    </a>
+    <nav class="site-nav" aria-label="Main navigation"><a  href="/">Home</a><a  href="/download/">Download</a><a  href="/introductory-example/">Introductory Example</a><a  href="/defining-optimization-problem/">Define a Problem</a><a  href="/solving-optimization-problem/">Solve a Problem</a><a  href="/learn-by-examples/">Examples</a><div class="subnav"><a  href="/learn-by-examples/sendmoremoney/">SEND+MORE=MONEY</a><a  href="/learn-by-examples/simple-arithmetic-problem/">Simple Arithmetic Problem</a><a  href="/learn-by-examples/map-coloring/">Map Coloring</a><a  href="/learn-by-examples/map-coloring-with-violations/">Map Coloring with&nbsp;Violations</a></div><a  href="/scheduling-and-resource-allocation/">Scheduling</a><a  href="/switching-solvers/">Switching Solvers</a><a  href="/brcp-lp/">Business Rules + Optimization</a><a  href="/decision-optimization-microservices/">Microservices</a><a  href="/support/">Support</a></nav>
+    <div class="sidebar-links"><a href="https://github.com/OpenRulesSupport/javasolver">GitHub</a><a href="https://mvnrepository.com/artifact/com.javasolver/javasolver">Maven Central</a></div>
+  </aside>
+    <main id="content" class="main">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Motivation</span></nav>
+      <header class="page-header ">
+        <p class="eyebrow">Java Solver documentation</p>
+        <h1>Motivation</h1>
+        
+        
+      </header>
+      <article class="prose"><figure class="wp-block-image alignright"><a href="/download/"><img src="/assets/media/2019-08/trynow.png" alt="" class="wp-image-258" /></a></figure>
+
+
+
+<p class="wp-block-paragraph">As a Java developer, you develop software that provides solutions for your business problems. When a problem has an optimization objective, your program should minimize/maximize this objective. There are plenty of great tools such as&nbsp;<a href="http://openjvm.jvmhost.net/CPSolvers/" target="_blank" rel="noreferrer noopener">Constraint Programming (CP) Solvers</a>&nbsp;and&nbsp;<a href="http://openjvm.jvmhost.net/LPSolvers/" target="_blank" rel="noreferrer noopener">Linear Programming (LP) Solvers</a>&nbsp;which may help you to define and solve such optimization problems. However, you don’t plan to become an optimization expert and/or learn specialized modeling languages. You just want to define your optimization problem in Java and see how one of these powerful solvers can find a good practical solution. If this is your motivation, then Java Solver is for you.</p>
+
+
+
+<h1 class="wp-block-heading"><strong>Solution</strong></h1>
+
+
+
+<p class="has-text-align-justify wp-block-paragraph">Java Solver is an open source product that provides a minimalistic, simple-to-use Java API for modeling and solving optimization problems. It contains only one class JavaSolver, from which you need to inherit your own Solver. This class may have only one method&nbsp;<strong><em>define()</em></strong>&nbsp;that will use your own Java objects to define constrained variables and posting constraints on them. Java Solver uses the basic methods of the standard Constraint Programming API&nbsp;<a href="http://jsr331.org/" target="_blank" rel="noreferrer noopener">JSR-331</a>. You don’t need to write a solving algorithm: instead, you simply call the default method&nbsp;<strong><em>minimize()&nbsp;</em></strong>or&nbsp;<strong><em>maximize()&nbsp;</em></strong>to find an optimal solution using any available CP/LP solver. You also may overload the method&nbsp;<em>saveSolution()</em>&nbsp;to save the found solution into your own Java objects. To switch between different solvers you just add their jar-files to the classpath. That’s the intent. To see how it’s actually done, look at the introductory&nbsp;<a href="/introductory-example/">example</a>.</p>
+
+
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+
+
+<p class="wp-block-paragraph"></p></article>
+      
+      <footer class="page-footer"><span>Last updated August 20, 2024</span><a href="https://github.com/OpenRulesSupport/javasolver">View Java Solver on GitHub</a></footer>
+    </main>
+  </div>
+  <script src="/assets/site.js"></script>
+</body>
+</html>

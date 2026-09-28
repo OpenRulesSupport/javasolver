@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Scheduling and Resource Allocation — Java Solver</title>
+  <meta name="description" content="To define and solve scheduling and resource allocation problems, Java Solver utilizes JSR331 Scheduler developed by OpenRules, Inc. JSR331 Scheduler is an imp">
+  <link rel="canonical" href="https://javasolver.com/scheduling-and-resource-allocation/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu"><span aria-hidden="true">☰</span><span>Menu</span></button>
+  <div class="layout">
+    <aside class="sidebar" id="site-menu">
+    <a class="brand" href="/" aria-label="Java Solver home">
+      <span class="brand-mark" aria-hidden="true">JS</span>
+      <span><strong>Java Solver</strong><small>Decision optimization in Java</small></span>
+    </a>
+    <nav class="site-nav" aria-label="Main navigation"><a  href="/">Home</a><a  href="/download/">Download</a><a  href="/introductory-example/">Introductory Example</a><a  href="/defining-optimization-problem/">Define a Problem</a><a  href="/solving-optimization-problem/">Solve a Problem</a><a  href="/learn-by-examples/">Examples</a><div class="subnav"><a  href="/learn-by-examples/sendmoremoney/">SEND+MORE=MONEY</a><a  href="/learn-by-examples/simple-arithmetic-problem/">Simple Arithmetic Problem</a><a  href="/learn-by-examples/map-coloring/">Map Coloring</a><a  href="/learn-by-examples/map-coloring-with-violations/">Map Coloring with&nbsp;Violations</a></div><a class="active" aria-current="page" href="/scheduling-and-resource-allocation/">Scheduling</a><a  href="/switching-solvers/">Switching Solvers</a><a  href="/brcp-lp/">Business Rules + Optimization</a><a  href="/decision-optimization-microservices/">Microservices</a><a  href="/support/">Support</a></nav>
+    <div class="sidebar-links"><a href="https://github.com/OpenRulesSupport/javasolver">GitHub</a><a href="https://mvnrepository.com/artifact/com.javasolver/javasolver">Maven Central</a></div>
+  </aside>
+    <main id="content" class="main">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Scheduling and Resource&nbsp;Allocation</span></nav>
+      <header class="page-header ">
+        <p class="eyebrow">Java Solver documentation</p>
+        <h1>Scheduling and Resource&nbsp;Allocation</h1>
+        
+        
+      </header>
+      <article class="prose"><p class="wp-block-paragraph">To define and solve scheduling and resource allocation problems, Java Solver utilizes <strong>JSR331 Scheduler</strong> developed by OpenRules, Inc. JSR331 Scheduler is an implementation of a generic scheduling Java API built on the top of the JSR331 constraint programming API available from this&nbsp;<a href="https://github.com/OpenRulesSupport/jsr331/tree/master/org.jcp.jsr331.scheduler" target="_blank" rel="noreferrer noopener">GitHub repository</a>&nbsp;as the project&nbsp;<em>org.jcp.jsr331.scheduler</em>.</p>
+
+
+
+<p class="wp-block-paragraph">It is also available through the MVN Repository and can be included in any Maven-based project as an embedded component of the JSR331 by adding the following dependency:</p>
+
+
+
+<figure class="wp-block-image"><img src="/assets/media/2020-04/jsr331scheduler.dependency.png" alt="" class="wp-image-335" /></figure>
+
+
+
+<p class="wp-block-paragraph"></p>
+
+
+
+<p class="wp-block-paragraph">The above scheme represents the major scheduling and resource allocation concepts implemented in JSR331 Scheduler.&nbsp;This representation of scheduling and resource allocation problems follows the concept model introduced in the great product called “<a href="http://lia.deis.unibo.it/Courses/AI/applicationsAI2009-2010/materiale/cp15doc/pdf/usrscheduler.pdf" target="_blank" rel="noreferrer noopener">ILOG Scheduler</a>” written by Claude LePape and Jean-Francois Puget in 1990s. This&nbsp;<a href="http://openrules.com/pdf/BRForum2012.Feldman.v1.pdf" target="_blank" rel="noreferrer noopener">presentation</a>&nbsp;explains how to use JSR331 Scheduler.</p>
+
+
+
+<p class="wp-block-paragraph"><strong>Sample Problems</strong></p>
+
+
+
+<p class="wp-block-paragraph">The examples of scheduling and resource allocation problems which can be defined and solved with JSR331 Scheduler are provided in the public GitHub project&nbsp;<a href="https://github.com/OpenRulesSupport/jsr331/tree/master/org.jcp.jsr331.tck.cp" target="_blank" rel="noreferrer noopener">org.jcp.jsr331.tck.cp</a>&nbsp; in the folder “<em>org.jcp.jsr331.scheduler.samples</em>“.</p>
+
+
+
+<p class="wp-block-paragraph">Let’s consider a simple scheduling examples when we plan to construct a house. The construction requires the following activities with fixed durations and precedence constraints:</p>
+
+
+
+<figure class="wp-block-image aligncenter"><a href="https://openrules.files.wordpress.com/2012/02/schedulingtasks.jpg"><img src="/assets/media/2012-02/schedulingtasks.jpg" alt="" class="wp-image-247" title="SchedulingTasks" /></a></figure>
+
+
+
+<p class="wp-block-paragraph">Arrows represent temporal constraints like “Carpentry starts after the end of Masonry”. The numbers near each activity represent its durations (in days).</p>
+
+
+
+<p class="wp-block-paragraph">This problem implement in the Java class “ScheduleActivities.java” in the folder “<em>org.jcp.jsr331.scheduler.samples</em>“. Here is its problem definition:</p>
+
+
+
+<figure class="wp-block-image"><img src="/assets/media/2020-04/scheduleactivities.define.png" alt="" class="wp-image-338" /></figure>
+
+
+
+<p class="wp-block-paragraph">Here is a problem resolution part:</p>
+
+
+
+<figure class="wp-block-image"><img src="/assets/media/2020-04/scheduleactivities.solve_.png" alt="" class="wp-image-339" /></figure>
+
+
+
+<p class="wp-block-paragraph"></p>
+
+
+
+<p class="wp-block-paragraph">It demonstrates how to find one solution, an optimal solutions, or many solutions.</p>
+
+
+
+<p class="wp-block-paragraph"><a href="https://openrules.blog/2012/02/11/modeling-decisions-for-scheduling-and-resource-allocation-problems/" target="_blank" rel="noreferrer noopener">Read more</a></p>
+
+
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+
+<hr class="wp-block-separator has-alpha-channel-opacity" />
+
+
+<hr class="wp-block-separator has-alpha-channel-opacity" /></article>
+      
+      <footer class="page-footer"><span>Last updated August 20, 2024</span><a href="https://github.com/OpenRulesSupport/javasolver">View Java Solver on GitHub</a></footer>
+    </main>
+  </div>
+  <script src="/assets/site.js"></script>
+</body>
+</html>

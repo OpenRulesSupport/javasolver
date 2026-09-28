@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Simple Arithmetic Problem — Java Solver</title>
+  <meta name="description" content="There are 3 integer variables X, Y, and Z with possible values from 1 to 10 that satisfy conditions: X &lt; Y and X + Y = Z. Find a solution that minimizes/maxim">
+  <link rel="canonical" href="https://javasolver.com/learn-by-examples/simple-arithmetic-problem/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu"><span aria-hidden="true">☰</span><span>Menu</span></button>
+  <div class="layout">
+    <aside class="sidebar" id="site-menu">
+    <a class="brand" href="/" aria-label="Java Solver home">
+      <span class="brand-mark" aria-hidden="true">JS</span>
+      <span><strong>Java Solver</strong><small>Decision optimization in Java</small></span>
+    </a>
+    <nav class="site-nav" aria-label="Main navigation"><a  href="/">Home</a><a  href="/download/">Download</a><a  href="/introductory-example/">Introductory Example</a><a  href="/defining-optimization-problem/">Define a Problem</a><a  href="/solving-optimization-problem/">Solve a Problem</a><a class="active" aria-current="page" href="/learn-by-examples/">Examples</a><div class="subnav"><a  href="/learn-by-examples/sendmoremoney/">SEND+MORE=MONEY</a><a class="active" aria-current="page" href="/learn-by-examples/simple-arithmetic-problem/">Simple Arithmetic Problem</a><a  href="/learn-by-examples/map-coloring/">Map Coloring</a><a  href="/learn-by-examples/map-coloring-with-violations/">Map Coloring with&nbsp;Violations</a></div><a  href="/scheduling-and-resource-allocation/">Scheduling</a><a  href="/switching-solvers/">Switching Solvers</a><a  href="/brcp-lp/">Business Rules + Optimization</a><a  href="/decision-optimization-microservices/">Microservices</a><a  href="/support/">Support</a></nav>
+    <div class="sidebar-links"><a href="https://github.com/OpenRulesSupport/javasolver">GitHub</a><a href="https://mvnrepository.com/artifact/com.javasolver/javasolver">Maven Central</a></div>
+  </aside>
+    <main id="content" class="main">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/learn-by-examples/">Learn By Examples</a><span aria-hidden="true">/</span><span aria-current="page">Simple Arithmetic Problem</span></nav>
+      <header class="page-header ">
+        <p class="eyebrow">Java Solver documentation</p>
+        <h1>Simple Arithmetic Problem</h1>
+        
+        
+      </header>
+      <article class="prose"><p>There are 3 integer variables X, Y, and Z with possible values from 1 to 10 that satisfy conditions: X &lt; Y and X + Y = Z. Find a solution that minimizes/maximizes the objective 3XY &#8211; 4Z. Find all possible solutions.</p>
+<p>The class XYZ extends JavaSolver and defines this problem in the following method:</p>
+<p><img loading="lazy" class="size-full wp-image-211 alignnone" src="/assets/media/2019-05/xyxdefine.png" alt="" width="660" height="302" /></p>
+<p>First it creates 3  constrained integer variables x, y, and z with possible values from 1 to 10. Then it posts two required constraints which look intuitive.  Then it defines the objective 3XY &#8211; 4Z.</p>
+<p>The main method of the class XYZ calls the methods <em>define()</em> and then standard JavaSolver&#8217;s methods <em>minimize()</em>, <em>maximize()</em>, and <em>solveAll():</em></p>
+<p><img loading="lazy" class="size-full wp-image-212 alignnone" src="/assets/media/2019-05/xyxmain.png" alt="" width="365" height="139" /></p>
+<p>Here are the execution results for minimize():</p>
+<p><img loading="lazy" class="size-full wp-image-213 alignnone" src="/assets/media/2019-05/xyxminimize.png" alt="" width="625" height="403" /></p>
+<p>&nbsp;</p>
+<p>Here are the execution results for maximize():</p>
+<p><img loading="lazy" class="size-full wp-image-214 alignnone" src="/assets/media/2019-05/xyxmaximize.png" alt="" width="616" height="643" /></p>
+<p>Here is the list of all possible solutions produced by solveAll():</p>
+<p><img loading="lazy" class="size-full wp-image-215 alignnone" src="/assets/media/2019-05/xyxall.png" alt="" width="379" height="811" /></p>
+<p>We may manually control the solution search by adding these optional lines:</p>
+<p><em>problem.setValueSelector(ValueSelectorType.MAX); //</em><em> will select possible values starting with the maximal one</em></p>
+<p><em>problem.setMaxNumberOfSolutions(10); // will consider no more than 10 solutions</em></p></article>
+      
+      <footer class="page-footer"><span>Last updated February 26, 2025</span><a href="https://github.com/OpenRulesSupport/javasolver">View Java Solver on GitHub</a></footer>
+    </main>
+  </div>
+  <script src="/assets/site.js"></script>
+</body>
+</html>

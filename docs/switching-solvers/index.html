@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Switching Between Solvers — Java Solver</title>
+  <meta name="description" content="Java Solver allows you to easily switch between underlying off-the-shelf solvers without changing anything in your optimization model. There are many Constrai">
+  <link rel="canonical" href="https://javasolver.com/switching-solvers/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu"><span aria-hidden="true">☰</span><span>Menu</span></button>
+  <div class="layout">
+    <aside class="sidebar" id="site-menu">
+    <a class="brand" href="/" aria-label="Java Solver home">
+      <span class="brand-mark" aria-hidden="true">JS</span>
+      <span><strong>Java Solver</strong><small>Decision optimization in Java</small></span>
+    </a>
+    <nav class="site-nav" aria-label="Main navigation"><a  href="/">Home</a><a  href="/download/">Download</a><a  href="/introductory-example/">Introductory Example</a><a  href="/defining-optimization-problem/">Define a Problem</a><a  href="/solving-optimization-problem/">Solve a Problem</a><a  href="/learn-by-examples/">Examples</a><div class="subnav"><a  href="/learn-by-examples/sendmoremoney/">SEND+MORE=MONEY</a><a  href="/learn-by-examples/simple-arithmetic-problem/">Simple Arithmetic Problem</a><a  href="/learn-by-examples/map-coloring/">Map Coloring</a><a  href="/learn-by-examples/map-coloring-with-violations/">Map Coloring with&nbsp;Violations</a></div><a  href="/scheduling-and-resource-allocation/">Scheduling</a><a class="active" aria-current="page" href="/switching-solvers/">Switching Solvers</a><a  href="/brcp-lp/">Business Rules + Optimization</a><a  href="/decision-optimization-microservices/">Microservices</a><a  href="/support/">Support</a></nav>
+    <div class="sidebar-links"><a href="https://github.com/OpenRulesSupport/javasolver">GitHub</a><a href="https://mvnrepository.com/artifact/com.javasolver/javasolver">Maven Central</a></div>
+  </aside>
+    <main id="content" class="main">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Switching Between Solvers</span></nav>
+      <header class="page-header ">
+        <p class="eyebrow">Java Solver documentation</p>
+        <h1>Switching Between Solvers</h1>
+        
+        
+      </header>
+      <article class="prose"><p class="wp-block-paragraph">Java Solver allows you to easily switch between underlying off-the-shelf solvers <strong><em>without changing anything in your optimization model</em></strong>. There are many Constraint and Linear solvers (open source and commercial) which can be utilized by Java Solver.  Constraint solvers can represent almost any problem while linear solvers are limited to linear constraints only. Linear solvers usually can find optimal solutions for problems of very large size faster in situations when constraint solvers stop short.</p>
+<p>Java Solver samples show you how to switch an underlying solver by changing one setting in the batch file. For instance, the <a href="/introductory-example/">introductory example</a> uses the batch file “runZoo.bat” to run the model with the constraint solver &#8220;Sugar&#8221;:</p>
+<p><img loading="lazy" class="alignnone wp-image-365 size-full" src="/assets/media/2020-04/choosingsolver.png" alt="" width="363" height="231" /></p>
+<p>The results will be shown as:</p>
+<p><img loading="lazy" class="size-full wp-image-366 alignnone" src="/assets/media/2020-04/zoosugar.png" alt="" width="660" height="161" /></p>
+<p>If  in the above bat-file comment out &#8220;Sugar&#8221; (put &#8220;rem&#8221; in front of it) and un-comment set SOLVER=Constrainer, the same model will be solved with another constraint solver and the results will look as follows:</p>
+<p><img loading="lazy" class="size-full wp-image-367 alignnone" src="/assets/media/2020-04/zooconstrainer.png" alt="" width="660" height="238" /></p>
+<p>Now, if you comment out CONSTRAINER, and set SOLVER=Scip, the same problem will be solved usin the linear solver SCIP:</p>
+<p><img loading="lazy" class="size-full wp-image-368 alignnone" src="/assets/media/2020-04/zooscip.png" alt="" width="660" height="304" /></p>
+<p>Not all solvers are good for solving all problems, and having an ability to easily switch between different solvers is a big plus!</p></article>
+      
+      <footer class="page-footer"><span>Last updated April 17, 2020</span><a href="https://github.com/OpenRulesSupport/javasolver">View Java Solver on GitHub</a></footer>
+    </main>
+  </div>
+  <script src="/assets/site.js"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Map Coloring with Violations — Java Solver</title>
+  <meta name="description" content="This problem is an advanced version of the Map Coloring where we had 4 colors but now we have only 3 colors (blue, red, green). It is not enough to color six ">
+  <link rel="canonical" href="https://javasolver.com/learn-by-examples/map-coloring-with-violations/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu"><span aria-hidden="true">☰</span><span>Menu</span></button>
+  <div class="layout">
+    <aside class="sidebar" id="site-menu">
+    <a class="brand" href="/" aria-label="Java Solver home">
+      <span class="brand-mark" aria-hidden="true">JS</span>
+      <span><strong>Java Solver</strong><small>Decision optimization in Java</small></span>
+    </a>
+    <nav class="site-nav" aria-label="Main navigation"><a  href="/">Home</a><a  href="/download/">Download</a><a  href="/introductory-example/">Introductory Example</a><a  href="/defining-optimization-problem/">Define a Problem</a><a  href="/solving-optimization-problem/">Solve a Problem</a><a class="active" aria-current="page" href="/learn-by-examples/">Examples</a><div class="subnav"><a  href="/learn-by-examples/sendmoremoney/">SEND+MORE=MONEY</a><a  href="/learn-by-examples/simple-arithmetic-problem/">Simple Arithmetic Problem</a><a  href="/learn-by-examples/map-coloring/">Map Coloring</a><a class="active" aria-current="page" href="/learn-by-examples/map-coloring-with-violations/">Map Coloring with&nbsp;Violations</a></div><a  href="/scheduling-and-resource-allocation/">Scheduling</a><a  href="/switching-solvers/">Switching Solvers</a><a  href="/brcp-lp/">Business Rules + Optimization</a><a  href="/decision-optimization-microservices/">Microservices</a><a  href="/support/">Support</a></nav>
+    <div class="sidebar-links"><a href="https://github.com/OpenRulesSupport/javasolver">GitHub</a><a href="https://mvnrepository.com/artifact/com.javasolver/javasolver">Maven Central</a></div>
+  </aside>
+    <main id="content" class="main">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/learn-by-examples/">Learn By Examples</a><span aria-hidden="true">/</span><span aria-current="page">Map Coloring with&nbsp;Violations</span></nav>
+      <header class="page-header ">
+        <p class="eyebrow">Java Solver documentation</p>
+        <h1>Map Coloring with&nbsp;Violations</h1>
+        
+        
+      </header>
+      <article class="prose"><figure class="wp-block-image alignright is-resized"><img src="/assets/media/2019-05/mapcoloring.png" alt="" class="wp-image-222" /></figure>
+
+
+
+<p class="wp-block-paragraph">This problem is an advanced version of the <a href="/learn-by-examples/map-coloring/">Map Coloring</a> where we had 4 colors but now we have only 3 colors (blue, red, green). It is not enough to color six European countries: Belgium, Denmark, France, Germany, Luxembourg, and the Netherlands in such a way that no neighboring countries use the same color. So, some neighboring counties may have the same colors but there is a relative cost for such violations:</p>
+
+
+
+<p class="p wp-block-paragraph">France – Luxembourg: $257<br>
+Luxembourg – Germany: $904<br>
+Luxembourg – Belgium: $568</p>
+
+
+
+<p class="wp-block-paragraph">We need to find a solution that minimizes the total violation cost.</p>
+
+
+
+<p class="wp-block-paragraph">To define and solve this problem we created Java class MapColoringWithViolations that extends JavaSolver and its method <em>define()</em> will replace the <a href="/learn-by-examples/map-coloring/">old constraints</a> with two types of constraints &#8220;hard&#8221; and &#8220;soft&#8221;:</p>
+
+
+
+<figure class="wp-block-image"><img src="/assets/media/2019-06/mapcoloringwithviolationsdefine.png" alt="" class="wp-image-241" /></figure>
+
+
+
+<p class="wp-block-paragraph"></p>
+
+
+
+<p class="wp-block-paragraph">As before, the method <em>define()</em> creates constrained integer variables for each country with possible values from 0 to (number of colors &#8211; 1). Then it posts only &#8220;hard&#8221; constraints <em>csp.post(country1, &#8220;!=&#8221;, country2)</em> for all neighboring countries: these constraints cannot be violated. Then it defines so called &#8220;soft&#8221; constraints by converting a constraint&nbsp; <em>csp.linear(country1,&#8221;=&#8221;,country2)</em> to a Boolean constrained variable using the Constraint&#8217;s method <em>asBool()</em>. When we multiply these variables by their violation costs, we receive weight variables, which we placed in the Var[] array <em>weightVars</em>. We want to minimize the sum of all weight variables, so we set it as our objective.</p>
+
+
+
+<p class="wp-block-paragraph">To solve the problem we called the standard JavaSolver&#8217;s method <em>minimize(): </em></p>
+
+
+
+<figure class="wp-block-image"><img src="/assets/media/2019-06/mapcoloringwithviolationsmain.png" alt="" class="wp-image-242" /></figure>
+
+
+
+<p class="wp-block-paragraph"></p>
+
+
+
+<p class="wp-block-paragraph">Here are the results:</p>
+
+
+
+<figure class="wp-block-image"><img src="/assets/media/2019-06/mapcoloringwithviolationsresults.png" alt="" class="wp-image-243" /></figure>
+
+
+
+<p class="wp-block-paragraph"></p></article>
+      
+      <footer class="page-footer"><span>Last updated February 26, 2025</span><a href="https://github.com/OpenRulesSupport/javasolver">View Java Solver on GitHub</a></footer>
+    </main>
+  </div>
+  <script src="/assets/site.js"></script>
+</body>
+</html>

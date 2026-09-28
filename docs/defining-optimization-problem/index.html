@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Defining Optimization Problem — Java Solver</title>
+  <meta name="description" content="Create Your Own Solver based on JavaSolver To define your optimization problem, you need to create a Java subclass, e.g. MySolver, of the standard class JavaS">
+  <link rel="canonical" href="https://javasolver.com/defining-optimization-problem/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu"><span aria-hidden="true">☰</span><span>Menu</span></button>
+  <div class="layout">
+    <aside class="sidebar" id="site-menu">
+    <a class="brand" href="/" aria-label="Java Solver home">
+      <span class="brand-mark" aria-hidden="true">JS</span>
+      <span><strong>Java Solver</strong><small>Decision optimization in Java</small></span>
+    </a>
+    <nav class="site-nav" aria-label="Main navigation"><a  href="/">Home</a><a  href="/download/">Download</a><a  href="/introductory-example/">Introductory Example</a><a class="active" aria-current="page" href="/defining-optimization-problem/">Define a Problem</a><a  href="/solving-optimization-problem/">Solve a Problem</a><a  href="/learn-by-examples/">Examples</a><div class="subnav"><a  href="/learn-by-examples/sendmoremoney/">SEND+MORE=MONEY</a><a  href="/learn-by-examples/simple-arithmetic-problem/">Simple Arithmetic Problem</a><a  href="/learn-by-examples/map-coloring/">Map Coloring</a><a  href="/learn-by-examples/map-coloring-with-violations/">Map Coloring with&nbsp;Violations</a></div><a  href="/scheduling-and-resource-allocation/">Scheduling</a><a  href="/switching-solvers/">Switching Solvers</a><a  href="/brcp-lp/">Business Rules + Optimization</a><a  href="/decision-optimization-microservices/">Microservices</a><a  href="/support/">Support</a></nav>
+    <div class="sidebar-links"><a href="https://github.com/OpenRulesSupport/javasolver">GitHub</a><a href="https://mvnrepository.com/artifact/com.javasolver/javasolver">Maven Central</a></div>
+  </aside>
+    <main id="content" class="main">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">Defining Optimization Problem</span></nav>
+      <header class="page-header ">
+        <p class="eyebrow">Java Solver documentation</p>
+        <h1>Defining Optimization Problem</h1>
+        
+        
+      </header>
+      <article class="prose"><h3 class="wp-block-heading"></h3>
+
+
+
+<p class="wp-block-paragraph"><strong>Create Your Own Solver based on JavaSolver</strong></p>
+
+
+
+<p class="wp-block-paragraph">To define your optimization problem, you need to create a Java subclass, e.g. MySolver, of the standard class <em>JavaSolver</em> similarly to the ProblemZoo in the <a href="/introductory-example/">Introductory Example:</a>&nbsp;&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph"><strong>Creating Constrained Variables</strong></p>
+
+
+
+<p class="wp-block-paragraph">To create a constrained integer variable with the name &#8220;Amount&#8221; and possible values between 0 and 1000, you may write:</p>
+
+
+
+<p class="wp-block-paragraph"><em><strong>Var</strong> amountVar = csp.<strong>variable</strong>(&#8220;Amount&#8221;, 0, 1000);</em></p>
+
+
+
+<p class="wp-block-paragraph">To create a constrained variable with the name &#8220;Assigned&#8221; and possible values between 0 or 1, you may write:</p>
+
+
+
+<p class="wp-block-paragraph"><em><strong>VarBool</strong> assignVar = csp.<strong>variableBool</strong>(&#8220;Assigned&#8221;);</em></p>
+
+
+
+<p class="wp-block-paragraph"><strong>Creating Constrained Expressions</strong></p>
+
+
+
+<p class="wp-block-paragraph">To create a constrained variable equal to (amountVar plus 50) , you may write:</p>
+
+
+
+<p class="wp-block-paragraph"><em>Var plus5 =amountVar.<strong>plus</strong>(50);</em></p>
+
+
+
+<p class="wp-block-paragraph">If you have 3 variables X, Y, and Z already defined, you may write the expression XY-Z as follows:</p>
+
+
+
+<p class="wp-block-paragraph"><em>Var objective = x.<strong>multiply</strong>(y).<strong>minus</strong>(z);</em></p>
+
+
+
+<p class="wp-block-paragraph"><strong>Creating Arrays, Sums, and Scalar Products</strong></p>
+
+
+
+<p class="wp-block-paragraph">Let&#8217;s say you want to create variables that represent working hour during 7 days of a week (0-Mon, 1-Tue,&#8230;, 6-Sun). You may create an array with the name &#8220;DailyHours&#8221; that contains 7 constrained integer variables with possible values between 0 and 8:</p>
+
+
+
+<p class="wp-block-paragraph"><em>Var[] dailyHours = csp.<strong>variableArray</strong>(&#8220;DailyHours&#8221;, 0, 8, 7);</em></p>
+
+
+
+<p class="wp-block-paragraph">To create a sum of all variables in this array, you may write:</p>
+
+
+
+<p class="wp-block-paragraph"><em>Var totalNumberOfWorkHours = csp.<strong>sum</strong>(dailyHours);</em></p>
+
+
+
+<p class="wp-block-paragraph">You may define the hourly costs for every day of the week:</p>
+
+
+
+<p class="wp-block-paragraph">int[] costs = new int[] { 40, 40, 40, 40, 40, 70, 70 };</p>
+
+
+
+<p class="wp-block-paragraph">Then a person&#8217;s weekly earning can be expressed as the following scalar product:</p>
+
+
+
+<p class="wp-block-paragraph"><em>Var weeklyEarning = csp.<strong>scalProd</strong>(costs, dailyHours);</em></p>
+
+
+
+<p class="wp-block-paragraph"><strong>Posting Arithmetic and Logical Constraints</strong></p>
+
+
+
+<p class="wp-block-paragraph">To state that our <em>amountVar</em> should be more or equal to 500, you may post this constraint:</p>
+
+
+
+<p class="wp-block-paragraph"><em>csp.<strong>post</strong>(amountVar, &#8220;&gt;=&#8221;, 500);</em></p>
+
+
+
+<p class="wp-block-paragraph">To state that X + Y = Z, you may post this constraint:</p>
+
+
+
+<p class="wp-block-paragraph"><em>csp.<strong>post</strong>(x.plus(y), &#8220;=&#8221;, z);&nbsp;</em></p>
+
+
+
+<p class="wp-block-paragraph">To state that a person cannot work more than 40 hours per week, you may post the constraint:</p>
+
+
+
+<p class="wp-block-paragraph"><em>csp.<strong>post</strong>(totalNumberOfWorkHours, &#8220;&lt;=&#8221;, 40);</em></p>
+
+
+
+<p class="wp-block-paragraph">To state that a person cannot work on Sunday (day# 6), you may post the constraint:</p>
+
+
+
+<p class="wp-block-paragraph"><em>csp.<strong>post</strong>(dailyHours[6], &#8220;=&#8221;, 0);</em></p>
+
+
+
+<p class="wp-block-paragraph">To state that a person should earn at least $1,280, you may post the constraint:</p>
+
+
+
+<p class="wp-block-paragraph"><em>csp.<strong>post</strong>(weeklyEarning, &#8220;&gt;=&#8221;, 1280);</em></p>
+
+
+
+<p class="wp-block-paragraph">To state that if a person works on Saturday she cannot work on Sunday, you may write:</p>
+
+
+
+<p class="wp-block-paragraph"><em><strong>Constraint</strong> worksOnSat = csp.<strong>linear</strong>(dailyHours[5], &#8220;&gt;&#8221;, 0);</em><br><em><strong>Constraint</strong> doesNotWorkOnSun = csp.<strong>linear</strong>(dailyHours[6], &#8220;=&#8221;, 0);</em><br><em>csp.<strong>postIfThen</strong>(worksOnSat, doesNotWorkOnSun);</em></p>
+
+
+
+<p class="wp-block-paragraph">To state that all integer variables of the array <em>variables</em> must take different values from each other, you may write:&nbsp;</p>
+
+
+
+<p class="wp-block-paragraph"><em>csp.<strong>postAllDifferent</strong>(variables);</em></p>
+
+
+
+<p class="wp-block-paragraph">You may find more complex predefined constraints in the <a href="http://openrules.com/jsr331/JSR331.UserManual.pdf" target="_blank" rel="noopener">JSR-331 User Manual</a>.</p>
+
+
+
+<p class="wp-block-paragraph"><strong>Defining Optimization Objective</strong></p>
+
+
+
+<p class="wp-block-paragraph">You may make any constrained variable to be your optimization objective, e.g,</p>
+
+
+
+<p class="wp-block-paragraph"><em><strong>setObjective</strong>(weeklyEarning);</em></p>
+
+
+
+<p class="wp-block-paragraph">will make your objective that you want to maximize or minimize &#8211; see <a href="/solving-optimization-problem/">Solving Optimization Problem</a>.</p>
+
+
+
+<p class="wp-block-paragraph"></p>
+
+
+
+<p class="wp-block-paragraph"></p>
+
+
+
+<figure class="wp-block-image size-large"><img loading="lazy" width="1024" height="696" src="/assets/media/2020-05/background5.png" alt="" class="wp-image-390" /></figure></article>
+      
+      <footer class="page-footer"><span>Last updated February 26, 2025</span><a href="https://github.com/OpenRulesSupport/javasolver">View Java Solver on GitHub</a></footer>
+    </main>
+  </div>
+  <script src="/assets/site.js"></script>
+</body>
+</html>

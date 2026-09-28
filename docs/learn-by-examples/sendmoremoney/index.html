@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SEND+MORE=MONEY — Java Solver</title>
+  <meta name="description" content="You need to write a program that solves this simple puzzle: where different letters represent different digits. The class SendMoreMoney extends JavaSolver and">
+  <link rel="canonical" href="https://javasolver.com/learn-by-examples/sendmoremoney/">
+  <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="/assets/site.css">
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-menu"><span aria-hidden="true">☰</span><span>Menu</span></button>
+  <div class="layout">
+    <aside class="sidebar" id="site-menu">
+    <a class="brand" href="/" aria-label="Java Solver home">
+      <span class="brand-mark" aria-hidden="true">JS</span>
+      <span><strong>Java Solver</strong><small>Decision optimization in Java</small></span>
+    </a>
+    <nav class="site-nav" aria-label="Main navigation"><a  href="/">Home</a><a  href="/download/">Download</a><a  href="/introductory-example/">Introductory Example</a><a  href="/defining-optimization-problem/">Define a Problem</a><a  href="/solving-optimization-problem/">Solve a Problem</a><a class="active" aria-current="page" href="/learn-by-examples/">Examples</a><div class="subnav"><a class="active" aria-current="page" href="/learn-by-examples/sendmoremoney/">SEND+MORE=MONEY</a><a  href="/learn-by-examples/simple-arithmetic-problem/">Simple Arithmetic Problem</a><a  href="/learn-by-examples/map-coloring/">Map Coloring</a><a  href="/learn-by-examples/map-coloring-with-violations/">Map Coloring with&nbsp;Violations</a></div><a  href="/scheduling-and-resource-allocation/">Scheduling</a><a  href="/switching-solvers/">Switching Solvers</a><a  href="/brcp-lp/">Business Rules + Optimization</a><a  href="/decision-optimization-microservices/">Microservices</a><a  href="/support/">Support</a></nav>
+    <div class="sidebar-links"><a href="https://github.com/OpenRulesSupport/javasolver">GitHub</a><a href="https://mvnrepository.com/artifact/com.javasolver/javasolver">Maven Central</a></div>
+  </aside>
+    <main id="content" class="main">
+      <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href="/learn-by-examples/">Learn By Examples</a><span aria-hidden="true">/</span><span aria-current="page">SEND+MORE=MONEY</span></nav>
+      <header class="page-header ">
+        <p class="eyebrow">Java Solver documentation</p>
+        <h1>SEND+MORE=MONEY</h1>
+        
+        
+      </header>
+      <article class="prose"><p>You need to write a program that solves this simple puzzle:</p>
+<p><img loading="lazy" class=" wp-image-205 alignnone" src="/assets/media/2019-05/sendmoremoney.puzzle.png" alt="" width="89" height="93" /></p>
+<p>where different letters represent different digits.</p>
+<p>The class SendMoreMoney extends JavaSolver and defines this problem in the following method:</p>
+<p><img loading="lazy" class="size-full wp-image-195 alignnone" src="/assets/media/2019-05/sendmoremoney.define.png" alt="" width="660" height="357" /></p>
+<p>First it creates 8 different constrained integer variables with possible values from 0 to 9. Then it puts these 8 variables into the array &#8220;vars&#8221; and posts a predefined constraint <em>csp.postAllDiff(vars)</em> forcing all these variables to take different values. And finally it expresses the main equation as</p>
+<p>1000S+100E+10N+D + 1000M+100M+10R+E &#8211; 10000M-1000O-100N-10E-Y = 0</p>
+<p>The next SendMoreMoney&#8217;s method is responsible for a nice print of the solution:</p>
+<p><img loading="lazy" class="size-full wp-image-196 alignnone" src="/assets/media/2019-05/sendmoremoney.savesolution.png" alt="" width="660" height="112" /></p>
+<p>This method will be automatically called when a solution is found.</p>
+<p>And finally, here is the main method that creates an instance of the class SendMoreMoney and calls its methods <em>define()</em> and <em>solve()</em>. The method solve() is used when a problem does not have an optimization objective and you want to find a feasible solution.</p>
+<p><img loading="lazy" class="size-full wp-image-197 alignnone" src="/assets/media/2019-05/sendmoremoney.main_.png" alt="" width="493" height="107" /></p>
+<p>Here are the execution results:</p>
+<p><img loading="lazy" class="size-full wp-image-198 alignnone" src="/assets/media/2019-05/sendmoremoney.results.png" alt="" width="546" height="307" /></p></article>
+      
+      <footer class="page-footer"><span>Last updated February 26, 2025</span><a href="https://github.com/OpenRulesSupport/javasolver">View Java Solver on GitHub</a></footer>
+    </main>
+  </div>
+  <script src="/assets/site.js"></script>
+</body>
+</html>
