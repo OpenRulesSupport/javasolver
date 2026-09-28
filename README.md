@@ -1,6 +1,9 @@
 # Java Solver &nbsp; &nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp; www.javasolver.com    
 [![N|Solid](https://javasolvers.files.wordpress.com/2019/05/image.png?w=97)](http://jcp.org/en/jsr/detail?id=331) 
 [Java Solver](http://javasolver.com) is a simple Java API for Modeling and Solving Optimization Problems using off-the-shelf Constraint and Linear Solvers. 
+
+The website source is maintained in [`docs/`](docs/) and deployed to [javasolver.com](https://javasolver.com) through GitHub Pages.
+
 # Motivation
 As a Java developer, you develop software that provides solutions to your business problems. When a problem has an optimization objective, your program should minimize/maximize this objective. There are plenty of great tools such as **[Constraint Programming (CP) Solvers](http://openjvm.jvmhost.net/CPSolvers/)** and **[Linear Programming (LP) Solvers](http://openjvm.jvmhost.net/LPSolvers/)** which may help you to define and solve such optimization problems. However, you don’t plan to become an optimization expert and/or learn specialized modeling languages. You just want to define your optimization problem in Java and see how one of these powerful solvers can find a good practical solution. If this is your motivation, then Java Solver is for you.
 # Solution
