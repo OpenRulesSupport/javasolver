@@ -2,7 +2,7 @@ set CLASS_NAME=com.javasolver.samples.ChristmasModel
 @echo off
 rem ====== CONSTRAINT SOLVERS ======
 rem set SOLVER=Sugar
-set SOLVER=Constrainer
+rem set SOLVER=Constrainer
 rem set SOLVER=Choco
 rem set SOLVER=JSetL
 rem ====== LINEAR SOLVERS ======

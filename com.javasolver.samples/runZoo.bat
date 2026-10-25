@@ -4,13 +4,14 @@ rem ====== CONSTRAINT SOLVERS ======
 rem set SOLVER=Sugar
 rem set SOLVER=Constrainer
 rem set SOLVER=Choco
+rem set SOLVER=MaxiCP
 rem set SOLVER=JSetL
 rem ====== LINEAR SOLVERS ======
 rem set SOLVER=Scip
-set SOLVER=GLPK
+rem set SOLVER=GLPK
 rem set SOLVER=Coin
-set SOLVER=CLP
-
+rem set SOLVER=CLP
+set SOLVER=ojAlgo
 cd %~dp0
 call .\run
 pause

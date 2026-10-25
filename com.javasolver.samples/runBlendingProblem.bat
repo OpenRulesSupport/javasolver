@@ -3,6 +3,7 @@ rem set SOLVER=Scip
 rem set SOLVER=GLPK
 rem set SOLVER=Coin
 set SOLVER=CLP
+set SOLVER=ojAlgo
 
 @echo off
 cd %~dp0

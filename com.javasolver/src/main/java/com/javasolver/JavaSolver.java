@@ -13,7 +13,7 @@ import javax.constraints.VarReal;
 
 public class JavaSolver {
 	
-	static final String RELEASE = "Java Solver Release 2.4.0 (build of Sep 21, 2026)";
+	static final String RELEASE = "Java Solver Release 3.0.0 (build of Sep 21, 2026)";
 
 	protected Problem csp; // used by all subclasses
 	protected Var objectiveVar;
