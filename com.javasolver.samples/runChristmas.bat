@@ -1,14 +1,14 @@
 set CLASS_NAME=com.javasolver.samples.ChristmasModel
 @echo off
 rem ====== CONSTRAINT SOLVERS ======
-rem set SOLVER=Sugar
-rem set SOLVER=Constrainer
-rem set SOLVER=Choco
-rem set SOLVER=JSetL
+rem set SOLVER=SIGAR
+rem set SOLVER=CONSTRAINER
+rem set SOLVER=CHOCO
+rem set SOLVER=JSETL
 rem ====== LINEAR SOLVERS ======
-rem set SOLVER=Scip
+rem set SOLVER=SCIP
 rem set SOLVER=GLPK
-rem set SOLVER=Coin
+rem set SOLVER=COIN
 rem set SOLVER=CLP
 
 cd %~dp0

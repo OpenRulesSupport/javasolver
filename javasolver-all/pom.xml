@@ -70,12 +70,12 @@
 	
 	<profiles>
 		<profile>
-			<id>Constrainer</id>
+			<id>CONSTRAINER</id>
 			<activation>
 				<activeByDefault>true</activeByDefault>
 				<property>
 					<name>solver</name>
-					<value>Constrainer</value>
+					<value>CONSTRAINER</value>
 				</property>
 			</activation>
 			<dependencies>
@@ -87,12 +87,12 @@
 			</dependencies>
 		</profile>
 		<profile>
-			<id>Sugar</id>
+			<id>SUGAR</id>
 			<activation>
 				<!--<activeByDefault>true</activeByDefault>-->
 				<property>
 					<name>solver</name>
-					<value>Sugar</value>
+					<value>SUGAR</value>
 				</property>
 			</activation>
 			<dependencies>
@@ -104,11 +104,11 @@
 			</dependencies>
 		</profile>
 		<profile>
-			<id>Choco</id>
+			<id>CHOCO</id>
 			<activation>
 				<property>
 					<name>solver</name>
-					<value>Choco</value>
+					<value>CHOCO</value>
 				</property>
 			</activation>
 			<dependencies>
@@ -120,11 +120,11 @@
 			</dependencies>
 		</profile>
 		<profile>
-			<id>MaxiCP</id>
+			<id>MAXICP</id>
 			<activation>
 				<property>
 					<name>solver</name>
-					<value>MaxiCP</value>
+					<value>MAXICP</value>
 				</property>
 			</activation>
 			<dependencies>
@@ -136,11 +136,11 @@
 			</dependencies>
 		</profile>
 		<profile>
-			<id>JaCoP</id>
+			<id>JACOP</id>
 			<activation>
 				<property>
 					<name>solver</name>
-					<value>JaCoP</value>
+					<value>JACOP</value>
 				</property>
 			</activation>
 			<dependencies>
@@ -152,11 +152,11 @@
 			</dependencies>
 		</profile>
 		<profile>
-			<id>JSetL</id>
+			<id>JSETL</id>
 			<activation>
 				<property>
 					<name>solver</name>
-					<value>JSetL</value>
+					<value>JSETL</value>
 				</property>
 			</activation>
 			<dependencies>
@@ -168,11 +168,11 @@
 			</dependencies>
 		</profile>
 		<profile>
-			<id>Scip</id>
+			<id>SCIP</id>
 			<activation>
 				<property>
 					<name>solver</name>
-					<value>Scip</value>
+					<value>SCIP</value>
 				</property>
 			</activation>
 			<dependencies>
@@ -231,11 +231,11 @@
 			</dependencies>
 		</profile>
 		<profile>
-			<id>Coin</id>
+			<id>COIN</id>
 			<activation>
 				<property>
 					<name>solver</name>
-					<value>Coin</value>
+					<value>COIN</value>
 				</property>
 			</activation>
 			<dependencies>
@@ -252,11 +252,11 @@
 			</dependencies>
 		</profile>
 		<profile>
-			<id>ojAlgo</id>
+			<id>OJALGO</id>
 			<activation>
 				<property>
 					<name>solver</name>
-					<value>ojAlgo</value>
+					<value>OJALGO</value>
 				</property>
 			</activation>
 			<dependencies>

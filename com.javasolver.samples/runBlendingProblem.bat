@@ -1,9 +1,9 @@
 set CLASS_NAME=com.javasolver.samples.BlendingProblem
-rem set SOLVER=Scip
+rem set SOLVER=SCIP
 rem set SOLVER=GLPK
-rem set SOLVER=Coin
+rem set SOLVER=COIN
 set SOLVER=CLP
-set SOLVER=ojAlgo
+set SOLVER=OJALGO
 
 @echo off
 cd %~dp0
