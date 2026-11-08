@@ -1,7 +1,7 @@
 set CLASS_NAME=com.javasolver.samples.ProblemZoo
 @echo off
 rem ====== CONSTRAINT SOLVERS ======
-rem set SOLVER=SIGAR
+rem set SOLVER=SUGAR
 rem set SOLVER=CONSTRAINER
 rem set SOLVER=CHOCO
 rem set SOLVER=JSETL
