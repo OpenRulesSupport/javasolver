@@ -7,21 +7,22 @@
 	<version>3.0.0</version>
 	<packaging>pom</packaging>
 
-	<name>javasolver-all</name>
-	<description>includes all possible Java Solver dependencies</description>
-	<url>http://javasolver.com</url>
+	<name>Java Solver All</name>
+	<description>Convenience POM for Java Solver, JSR-331 scheduling, logging, and selectable constraint or linear solver implementations.</description>
+	<url>https://javasolver.com/</url>
 
 	<licenses> 
 		<license>
-			<name>GNU Lesser General Public License (LGPL)</name>
-			<url>https://www.gnu.org/licenses/old-licenses/lgpl-2.1.en.html</url>
+			<name>GNU Lesser General Public License v3.0</name>
+			<url>https://www.gnu.org/licenses/lgpl-3.0.html</url>
 			<distribution>repo</distribution>
 		</license>
 	</licenses>
 
 	<scm>
 		<connection>scm:git:https://github.com/OpenRulesSupport/javasolver.git</connection>
-		<url>https://github.com/OpenRulesSupport/javasolver.git</url>
+		<developerConnection>scm:git:ssh://git@github.com/OpenRulesSupport/javasolver.git</developerConnection>
+		<url>https://github.com/OpenRulesSupport/javasolver</url>
 		<tag>HEAD</tag>
 	</scm>
 
@@ -272,6 +273,41 @@
 				</dependency>
 			</dependencies>
 		</profile>
+		<profile>
+			<id>release</id>
+			<build>
+				<plugins>
+					<plugin>
+						<groupId>org.apache.maven.plugins</groupId>
+						<artifactId>maven-gpg-plugin</artifactId>
+						<version>3.2.8</version>
+						<configuration>
+							<bestPractices>true</bestPractices>
+						</configuration>
+						<executions>
+							<execution>
+								<id>sign-artifacts</id>
+								<phase>verify</phase>
+								<goals>
+									<goal>sign</goal>
+								</goals>
+							</execution>
+						</executions>
+					</plugin>
+					<plugin>
+						<groupId>org.sonatype.central</groupId>
+						<artifactId>central-publishing-maven-plugin</artifactId>
+						<version>0.12.0</version>
+						<extensions>true</extensions>
+						<configuration>
+							<publishingServerId>central</publishingServerId>
+							<autoPublish>false</autoPublish>
+							<waitUntil>validated</waitUntil>
+						</configuration>
+					</plugin>
+				</plugins>
+			</build>
+		</profile>
 	</profiles>
 
 	<developers>
@@ -283,73 +319,12 @@
 		</developer>
 	</developers>
 
-	<distributionManagement>
-		<snapshotRepository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/content/repositories/snapshots</url>
-		</snapshotRepository>
-		<repository>
-			<id>ossrh</id>
-			<url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
-		</repository>
-	</distributionManagement>
 	<build>
 		<plugins>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-source-plugin</artifactId>
-				<version>2.2.1</version>
-				<executions>
-					<execution>
-						<id>attach-sources</id>
-						<goals>
-							<goal>jar-no-fork</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-javadoc-plugin</artifactId>
-				<version>2.9.1</version>
-				<executions>
-					<execution>
-						<id>attach-javadocs</id>
-						<goals>
-							<goal>jar</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-gpg-plugin</artifactId>
-				<version>1.5</version>
-				<executions>
-					<execution>
-						<id>sign-artifacts</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>sign</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
-			<plugin>
-				<groupId>org.sonatype.plugins</groupId>
-				<artifactId>nexus-staging-maven-plugin</artifactId>
-				<version>1.6.7</version>
-				<extensions>true</extensions>
-				<configuration>
-					<serverId>ossrh</serverId>
-					<nexusUrl>https://oss.sonatype.org/</nexusUrl>
-					<autoReleaseAfterClose>true</autoReleaseAfterClose>
-				</configuration>
-			</plugin>
-			<plugin>
 			    <groupId>org.codehaus.mojo</groupId>
 			    <artifactId>exec-maven-plugin</artifactId>
-			    <version>3.1.0</version> <!-- Use your current version -->
+			    <version>3.1.0</version>
 			    <configuration>
 			        <cleanupDaemonThreads>false</cleanupDaemonThreads>
 			    </configuration>
