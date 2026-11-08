@@ -67,49 +67,57 @@ public class ProblemZoo extends JavaSolver {
 	}
 }
 ~~~
-You can execute this problem with a double-click on the file "runZoo.bat" that looks like below:
+You can execute this problem with a double-click on the file "runZoo.bat", which looks like below:
 ~~~
 set CLASS_NAME=com.javasolver.samples.ProblemZoo
-rem set SOLVER=Scip
+rem set SOLVER=SCIP
 rem set SOLVER=GLPK
-set SOLVER=Constrainer
-rem set SOLVER=Sugar
+set SOLVER=CONSTRAINER
+rem set SOLVER=SUGAR
+rem set SOLVER=MAXICP
+rem set SOLVER=CHOCO
 @echo off
 cd %~dp0
 call .\run
 pause
 ~~~
-As you can see, it can be executed with a constraint solver such as Constrainer or a linear solver such as Scip or GLPK - just uncomment out one of them (remove/add "rem"). Some problems (such as InsideOutsideProduction) can be solved only with linear problems, while other problems with non-linear constraints can be solved only with constraint solvers. All provided bat-files use the common file "run.bat". You may similarly create a batch file for your own optimization problem and find the most appropriate solver to solve it.
+As you can see, it can be executed with a constraint solver such as CONSTRAINER or MAXICP or a linear solver such as SCIP or CLP - just uncomment out one of them (remove/add "rem"). Some problems (such as InsideOutsideProduction) can be solved only with linear problems, while other problems with non-linear constraints can be solved only with constraint solvers. All provided bat-files use the common file "run.bat". You may similarly create a batch file for your own optimization problem and find the most appropriate solver to solve it.
 
-To switch between solvers, you only need to reset the variable SOLVER inside these bat-files. No changes in the original Java code are required. 
+To switch between solvers, you only need to reset the property SOLVER inside these bat files. No changes in the original Java code are required. 
 
 # Using Java Solver in your Maven Projects
-Java Solver and JSR331 are mavenized and are available for automatic download from the public [MVN Repository](https://mvnrepository.com/search?q=javasolver). To add Java Solver to your Maven project, you should simply add the following Java Solver dependency to your pom.xml file:
+Java Solver and JSR331 are available for automatic download from the public [MVN Repository](https://mvnrepository.com/search?q=javasolver). To add Java Solver to your Maven project, you should simply add the following Java Solver dependency to your pom.xml file:
 ~~~
 	<dependencies>
 		<dependency>
 			<groupId>com.javasolver</groupId>
 			<artifactId>javasolver-all</artifactId>
-			<version>2.3.2</version>
+			<version>3.0.02</version>
 		</dependency>
 	</dependencies>
 ~~~
-It includes dependencies to all constraint and linear solvers currently included in the JSR331:
+It includes dependencies on all constraint and linear solvers currently included in the JSR331:
+
 **Open source constraint solvers**: 
--	[Sugar™](http://bach.istc.kobe-u.ac.jp/sugar/) (version 2.1.3, BSD-3-Clause license) 
--	[Constrainer™](http://sourceforge.net/projects/openl-tablets/?source=directory) (GNU LGPL license)
--	[Choco™](http://choco.sourceforge.net/) (version 2, BSD license) 
--	[JSetL™](http://cmt.math.unipr.it/jsetl.html) (GNU GPL license)
+- [CHOCO](https://choco-solver.org/) version 6.0.1
+- [CONSTRAINER](/) version 5.4.4 (JSR 331-specific version supported by OpenRules)
+- [JACOP](https://github.com/radsz/jacop) version 4.10.0
+- [JSETL](https://dl.acm.org/doi/pdf/10.1145/977091.977094) version 3.0
+- [MAXICP](https://maxicp.org/) version 1.0.0
+- [SUGAR](https://cspsat.gitlab.io/sugar/) version 2.1.3
 
 **Open Source LP Solvers**:
--	[SCIP](http://scip.zib.de/)
--	[GLPK](http://www.gnu.org/software/glpk/)
--	[COIN](https://projects.coin-or.org/Clp/)
--	[LP_SOLVE](http://lpsolve.sourceforge.net/5.0/)
--	[OJALGO](http://ojalgo.org/).
+- [CLP](https://github.com/coin-or/Clp) version 3.0.0 (a linear/MIP programming library based on the Coin-OR CLP linear solver)
+- [COIN](https://projects.coin-or.org/) version 1.8.0
+- [GLPK](https://www.gnu.org/software/glpk/) version 4-65
+- [GUROBI](https://www.gurobi.com/products/gurobi-optimizer/) version 5.0.1
+- [LPSOLVE](https://github.com/lp-solve/lp_solve/) version 5.5.2
+- [OJALGO](https://github.com/optimatika/ojAlgo) version 57.6.2
+- [SCIP](https://github.com/scipopt/scip) version 10
+- [SSC](https://www.ssclab.org/) version 4.7.8
 
 **Commercial LP Solvers** (you need to acquire commercial licenses and executables):
--	[IBM CPLEX](http://www-01.ibm.com/software/integration/optimization/cplex-optimizer/)
--	[GUROBI](http://www.gurobi.com/)
+- [IBM CPLEX](http://www-01.ibm.com/software/integration/optimization/cplex-optimizer/)
+- [GUROBI](http://www.gurobi.com/)
 
 More implementations will be included in the standard installation as they become available.
